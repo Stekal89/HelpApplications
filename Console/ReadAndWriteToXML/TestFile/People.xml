@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<People>
+		<Person>
+			<Firstname>Michaela</Firstname>
+			<Lastname>Huber</Lastname>
+			<Birthday>23.01.1998</Birthday>
+			<Age>23</Age>
+		</Person>
+		<Person>
+			<Firstname>Jonny</Firstname>
+			<Lastname>Johnson</Lastname>
+			<Birthday>01.07.1989</Birthday>
+			<Age>31</Age>
+		</Person>
+		<Person>
+			<Firstname>Frida</Firstname>
+			<Lastname>Lustig</Lastname>
+			<Birthday>12.11.2000</Birthday>
+			<Age>20</Age>
+		</Person>
+		<Person>
+			<Firstname>Johan</Firstname>
+			<Lastname>Mueller</Lastname>
+			<Birthday>21.09.1888</Birthday>
+			<Age>32</Age>
+		</Person>
+	</People>
+</Configuration>

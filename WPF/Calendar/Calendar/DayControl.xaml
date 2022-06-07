@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="Calendar.DayControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Calendar"
+             mc:Ignorable="d" d:DesignHeight="100" d:DesignWidth="200">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <CollectionViewSource Source="{Binding}" x:Key="cvsShowDay" Filter="ShowDay" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Calendar;component/css/StyleSheet.xaml">
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    
+    <!--<Grid Style="{StaticResource dayGrid}" UIElement.PreviewMouseLeftButtonDown="ClickOnDayControl">-->
+        <Grid UIElement.PreviewMouseLeftButtonDown="ClickOnDayControl">
+            <Border x:Name="bMoFirst" Style="{StaticResource borderDayOfMonth}" >
+            <Grid x:Name="grdDay">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1.5*" />
+                    <RowDefinition Height="7*" />
+                </Grid.RowDefinitions>
+                <Label x:Name="lblDay"
+                       Content="Test" 
+                       Grid.Row="0" 
+                       FontWeight="Bold" 
+                       />
+
+                <DataGrid x:Name="dataGrid" Background="AliceBlue" ItemsSource="{Binding Source={StaticResource cvsShowDay}}" Grid.Row="1" HeadersVisibility="None"/>
+            </Grid>
+            <!--Background="Beige"/>-->
+        </Border>
+    </Grid>
+</UserControl>

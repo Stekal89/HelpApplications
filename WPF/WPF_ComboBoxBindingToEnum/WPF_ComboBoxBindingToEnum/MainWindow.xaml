@@ -1,0 +1,40 @@
+﻿<Window x:Class="WPF_ComboBoxBindingToEnum.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_ComboBoxBindingToEnum"
+        xmlns:localSub="clr-namespace:WPF_ComboBoxBindingToEnum.Model"
+        mc:Ignorable="d"
+        Title="MainWindow" MinHeight="450" Height="450" MinWidth="800" Width="800">
+    <!--
+    This musst be difined, if the Classes are in a different folder, or a subfolder:
+    xmlns:localSub="clr-namespace:WPF_ComboBoxBindingToEnum.Model"
+    -->
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10px" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="10px" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10px" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="10px" />
+        </Grid.RowDefinitions>
+        
+        <!-- The Source of this code was found on: https://brianlagunas.com/a-better-way-to-data-bind-enums-in-wpf/ -->
+        <Label Content="Status:" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        <ComboBox Grid.Column="2" Grid.Row="1" IsEditable="True" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="150"
+              ItemsSource="{Binding Source={localSub:EnumBindingSource {x:Type localSub:Status}}}"/>
+
+        <Label Content="Car-Brand:" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Center" />
+        <ComboBox Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="150"
+              ItemsSource="{Binding Source={localSub:EnumBindingSource {x:Type localSub:CarBrand}}}"/>
+
+
+    </Grid>
+</Window>

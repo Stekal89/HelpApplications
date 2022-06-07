@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30523.141
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolTip_DataGridTextColumn", "ToolTip_DataGridTextColumn.csproj", "{37D5CB19-CCC3-4252-A797-9312F09E9B51}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{37D5CB19-CCC3-4252-A797-9312F09E9B51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37D5CB19-CCC3-4252-A797-9312F09E9B51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37D5CB19-CCC3-4252-A797-9312F09E9B51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37D5CB19-CCC3-4252-A797-9312F09E9B51}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {66ED7344-EED8-441C-8932-5C0A4634A091}
+	EndGlobalSection
+EndGlobal

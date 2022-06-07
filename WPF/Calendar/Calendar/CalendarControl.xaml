@@ -1,0 +1,171 @@
+﻿<UserControl x:Class="Calendar.CalendarControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Calendar"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <!-- StyleSheet -->
+    
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Calendar;component/css/StyleSheet.xaml">
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid x:Name="gCalendar" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20px"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="20px"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20px"/>
+            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="20px"/>
+        </Grid.RowDefinitions>
+
+        <!-- Year, Left Arrow, Month and Right Arrow -->
+        <ComboBox x:Name="cbMWD" FontWeight="Bold" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectionChanged="CbMWD_SelectionChanged" BorderBrush="Black" BorderThickness="1px" Margin="1px" >
+            <!--<ComboBoxItem x:Name="cbiMonth" Content="Monat" IsSelected="True"/>-->
+            <ComboBoxItem x:Name="cbiMonth" Content="Monat" />
+            <ComboBoxItem x:Name="cbiWeek" Content="Woche" />
+            <ComboBoxItem x:Name="cbiDay" Content="Tag"/>
+        </ComboBox>
+
+        <Button x:Name="btnPrevious" Content="Previous" FontWeight="ExtraBold" Click="ClickNextPreviousMonth" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2"  BorderBrush="Black" Margin="1px" BorderThickness="0.5px" />
+        <Label x:Name="lblYear" Content="YEAR" Grid.Column="2" Grid.Row="2"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="ExtraBold" FontSize="10" Background="Gray" Padding="0" BorderBrush="Black" Margin="1px" BorderThickness="0.5px" />
+        <Label x:Name="lblHeader" Grid.Column="2" Grid.Row="3"  Content="MONTH" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="ExtraBold" FontSize="10" Background="AliceBlue" Padding="0" BorderBrush="Black" Margin="1px" BorderThickness="0.5px"/>
+        <Button x:Name="btnNext" Grid.Column="3" Grid.Row="2" Grid.RowSpan="2" Content="Next" FontWeight="ExtraBold" Click="ClickNextPreviousMonth" BorderBrush="Black" Margin="1px" BorderThickness="0.5px"/>
+
+            <!--    Grid for Month -->
+        <Grid x:Name="grdMonth" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="4" Visibility="Hidden">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.2*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" x:Name="mGridLastRow" />
+            </Grid.RowDefinitions>
+
+            <!-- Labels for days -->
+            <Label x:Name="lblMonday" Content="Mo" Grid.Column="0" Grid.Row="0" Style="{StaticResource weekDayHeader}" />
+            <Label x:Name="lblTuesday" Content="Di" Grid.Column="1" Grid.Row="0" Style="{StaticResource weekDayHeader}" />
+            <Label x:Name="lblWednesday" Content="Mi" Grid.Column="2" Grid.Row="0"  Style="{StaticResource weekDayHeader}" />
+            <Label x:Name="lblThursday" Content="Do" Grid.Column="3" Grid.Row="0" Style="{StaticResource weekDayHeader}" />
+            <Label x:Name="lblFriday" Content="Fr" Grid.Column="4" Grid.Row="0" Style="{StaticResource weekDayHeader}" />
+            <Label x:Name="lblSaturday" Content="Sa" Grid.Column="5" Grid.Row="0"  Style="{StaticResource weekDayHeader}" />
+            <Label x:Name="lblSunday" Content="So" Grid.Column="6" Grid.Row="0"  Style="{StaticResource weekDaySundayHeader}" />
+
+            <local:DayControl x:Name="mMonFirst" Grid.Column="0" Grid.Row="1"/>
+            <local:DayControl x:Name="mTueFirst" Grid.Column="1" Grid.Row="1"/>
+            <local:DayControl x:Name="mWedFirst" Grid.Column="2" Grid.Row="1"/>
+            <local:DayControl x:Name="mThuFirst" Grid.Column="3" Grid.Row="1"/>
+            <local:DayControl x:Name="mFriFirst" Grid.Column="4" Grid.Row="1"/>
+            <local:DayControl x:Name="mSatFirst" Grid.Column="5" Grid.Row="1"/>
+            <local:DayControl x:Name="mSonFirst" Grid.Column="6" Grid.Row="1"/>
+
+            <local:DayControl x:Name="mMonSecond" Grid.Column="0" Grid.Row="2"/>
+            <local:DayControl x:Name="mTueSecond" Grid.Column="1" Grid.Row="2"/>
+            <local:DayControl x:Name="mWedSecond" Grid.Column="2" Grid.Row="2"/>
+            <local:DayControl x:Name="mThuSecond" Grid.Column="3" Grid.Row="2"/>
+            <local:DayControl x:Name="mFriSecond" Grid.Column="4" Grid.Row="2"/>
+            <local:DayControl x:Name="mSatSecond" Grid.Column="5" Grid.Row="2"/>
+            <local:DayControl x:Name="mSonSecond" Grid.Column="6" Grid.Row="2"/>
+
+            <local:DayControl x:Name="mMonThird" Grid.Column="0" Grid.Row="3"/>
+            <local:DayControl x:Name="mTueThird" Grid.Column="1" Grid.Row="3"/>
+            <local:DayControl x:Name="mWedThird" Grid.Column="2" Grid.Row="3"/>
+            <local:DayControl x:Name="mThuThird" Grid.Column="3" Grid.Row="3"/>
+            <local:DayControl x:Name="mFriThird" Grid.Column="4" Grid.Row="3"/>
+            <local:DayControl x:Name="mSatThird" Grid.Column="5" Grid.Row="3"/>
+            <local:DayControl x:Name="mSonThird" Grid.Column="6" Grid.Row="3"/>
+
+            <local:DayControl x:Name="mMonFourth" Grid.Column="0" Grid.Row="4"/>
+            <local:DayControl x:Name="mTueFourth" Grid.Column="1" Grid.Row="4"/>
+            <local:DayControl x:Name="mWedFourth" Grid.Column="2" Grid.Row="4"/>
+            <local:DayControl x:Name="mThuFourth" Grid.Column="3" Grid.Row="4"/>
+            <local:DayControl x:Name="mFriFourth" Grid.Column="4" Grid.Row="4"/>
+            <local:DayControl x:Name="mSatFourth" Grid.Column="5" Grid.Row="4"/>
+            <local:DayControl x:Name="mSonFourth" Grid.Column="6" Grid.Row="4"/>
+
+            <local:DayControl x:Name="mMonFifth" Grid.Column="0" Grid.Row="5"/>
+            <local:DayControl x:Name="mTueFifth" Grid.Column="1" Grid.Row="5"/>
+            <local:DayControl x:Name="mWedFifth" Grid.Column="2" Grid.Row="5"/>
+            <local:DayControl x:Name="mThuFifth" Grid.Column="3" Grid.Row="5"/>
+            <local:DayControl x:Name="mFriFifth" Grid.Column="4" Grid.Row="5"/>
+            <local:DayControl x:Name="mSatFifth" Grid.Column="5" Grid.Row="5"/>
+            <local:DayControl x:Name="mSonFifth" Grid.Column="6" Grid.Row="5"/>
+
+            <local:DayControl x:Name="mMonSixth" Grid.Column="0" Grid.Row="6"/>
+            <local:DayControl x:Name="mTueSixth" Grid.Column="1" Grid.Row="6"/>
+            <local:DayControl x:Name="mWedSixth" Grid.Column="2" Grid.Row="6"/>
+            <local:DayControl x:Name="mThuSixth" Grid.Column="3" Grid.Row="6"/>
+            <local:DayControl x:Name="mFriSixth" Grid.Column="4" Grid.Row="6"/>
+            <local:DayControl x:Name="mSatSixth" Grid.Column="5" Grid.Row="6"/>
+            <local:DayControl x:Name="mSonSixth" Grid.Column="6" Grid.Row="6"/>
+
+
+
+
+        </Grid>
+        <Grid x:Name="grdWeek" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="4" Visibility="Visible">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" x:Name="wGridLastRow" />
+            </Grid.RowDefinitions>
+
+            <!-- Labels for days -->
+            <!--
+            <Label Content="Mo" Grid.Column="0" Grid.Row="0" Style="{StaticResource weekDayHeader}" />
+            <Label Content="Di" Grid.Column="1" Grid.Row="0" Style="{StaticResource weekDayHeader}" />
+            <Label Content="Mi" Grid.Column="2" Grid.Row="0"  Style="{StaticResource weekDayHeader}" />
+            <Label Content="Do" Grid.Column="3" Grid.Row="0" Style="{StaticResource weekDayHeader}" />
+            <Label Content="Fr" Grid.Column="4" Grid.Row="0" Style="{StaticResource weekDayHeader}" />
+            <Label Content="Sa" Grid.Column="5" Grid.Row="0"  Style="{StaticResource weekDayHeader}" />
+            <Label Content="So" Grid.Column="6" Grid.Row="0"  Style="{StaticResource weekDaySundayHeader}" />
+            -->
+            
+            
+            <local:DayControl x:Name="wMon" Grid.Column="0" Grid.Row="0"/>
+            <local:DayControl x:Name="wTue" Grid.Column="1" Grid.Row="0"/>
+            <local:DayControl x:Name="wWed" Grid.Column="2" Grid.Row="0"/>
+            <local:DayControl x:Name="wThu" Grid.Column="3" Grid.Row="0"/>
+            <local:DayControl x:Name="wFri" Grid.Column="4" Grid.Row="0"/>
+            <local:DayControl x:Name="wSat" Grid.Column="5" Grid.Row="0"/>
+            <local:DayControl x:Name="wSon" Grid.Column="6" Grid.Row="0"/>
+
+        </Grid>
+        <Grid x:Name="grdDay" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="4" Visibility="Hidden">
+        </Grid>
+
+    </Grid>
+</UserControl>

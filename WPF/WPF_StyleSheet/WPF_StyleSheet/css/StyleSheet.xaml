@@ -1,0 +1,35 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+            <!-- Default Styles: -->
+    
+    <!-- If no Class defined Style exist this can be used, it will be used for ALL Controls -->
+    
+    <!-- Label -->
+    <!--<Style TargetType="Label">
+        <Setter Property="Background" Value="AliceBlue" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+    
+    --><!-- Button --><!--
+    <Style TargetType="Button">
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Background" Value="DarkGray" />
+    </Style>-->
+    
+            <!-- Class defined Styles: -->
+    <!--Label -->
+    <Style x:Key="labelClassStyle" TargetType="Label">
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Background" Value="Black" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <Style x:Key="buttonClassStyle" TargetType="Button">
+        <Setter Property="Foreground" Value="Chocolate" />
+        <Setter Property="Background" Value="Aqua" />
+    </Style>
+    
+</ResourceDictionary>

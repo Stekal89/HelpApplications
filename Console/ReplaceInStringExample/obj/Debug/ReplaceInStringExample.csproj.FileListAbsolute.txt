@@ -1,0 +1,7 @@
+C:\Users\tstekovits\Documents\GitHub\HelpApplications\Console\ReplaceInStringExample\bin\Debug\ReplaceInStringExample.exe.config
+C:\Users\tstekovits\Documents\GitHub\HelpApplications\Console\ReplaceInStringExample\bin\Debug\ReplaceInStringExample.exe
+C:\Users\tstekovits\Documents\GitHub\HelpApplications\Console\ReplaceInStringExample\bin\Debug\ReplaceInStringExample.pdb
+C:\Users\tstekovits\Documents\GitHub\HelpApplications\Console\ReplaceInStringExample\obj\Debug\ReplaceInStringExample.csproj.AssemblyReference.cache
+C:\Users\tstekovits\Documents\GitHub\HelpApplications\Console\ReplaceInStringExample\obj\Debug\ReplaceInStringExample.csproj.CoreCompileInputs.cache
+C:\Users\tstekovits\Documents\GitHub\HelpApplications\Console\ReplaceInStringExample\obj\Debug\ReplaceInStringExample.exe
+C:\Users\tstekovits\Documents\GitHub\HelpApplications\Console\ReplaceInStringExample\obj\Debug\ReplaceInStringExample.pdb

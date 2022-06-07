@@ -1,0 +1,7 @@
+C:\Users\tstekovits\Documents\GitHub\HelpApplications\Console\InheritanceAndObjectCasting\bin\Debug\InheritanceAndObjectCasting.exe.config
+C:\Users\tstekovits\Documents\GitHub\HelpApplications\Console\InheritanceAndObjectCasting\bin\Debug\InheritanceAndObjectCasting.exe
+C:\Users\tstekovits\Documents\GitHub\HelpApplications\Console\InheritanceAndObjectCasting\bin\Debug\InheritanceAndObjectCasting.pdb
+C:\Users\tstekovits\Documents\GitHub\HelpApplications\Console\InheritanceAndObjectCasting\obj\Debug\InheritanceAndObjectCasting.csproj.AssemblyReference.cache
+C:\Users\tstekovits\Documents\GitHub\HelpApplications\Console\InheritanceAndObjectCasting\obj\Debug\InheritanceAndObjectCasting.csproj.CoreCompileInputs.cache
+C:\Users\tstekovits\Documents\GitHub\HelpApplications\Console\InheritanceAndObjectCasting\obj\Debug\InheritanceAndObjectCasting.exe
+C:\Users\tstekovits\Documents\GitHub\HelpApplications\Console\InheritanceAndObjectCasting\obj\Debug\InheritanceAndObjectCasting.pdb

@@ -1,0 +1,74 @@
+﻿<Window x:Class="TreeViewExample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TreeViewExample"
+        xmlns:localControls="clr-namespace:TreeViewExample.UserControls"
+        xmlns:localModels="clr-namespace:TreeViewExample.Models"
+        mc:Ignorable="d"
+        x:Name="mwMainWindow"
+        Title="TreeView-Example" MinHeight="450" MinWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10px" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="10px" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10px" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="10px" />
+        </Grid.ColumnDefinitions>
+
+        <!--#region Manual Treview -->
+        <Label Grid.Row="1" Grid.Column="1" Content="Manual created TreeView" FontWeight="Bold" />
+        <TreeView Grid.Row="2" Grid.Column="1" BorderBrush="Black" BorderThickness="1px">
+            <TreeViewItem Header="Parent">
+                <TreeViewItem Header="Child1" />
+                <TreeViewItem Header="Child2" />
+                <TreeViewItem Header="Child3" >
+                    <TreeViewItem Header="GrandChild1" />
+                    <TreeViewItem Header="GrandChild2" >
+                        <TreeViewItem Header="ChildAgain1" />
+                    </TreeViewItem>
+                    <TreeViewItem Header="GrandChild3" />
+                </TreeViewItem>
+            </TreeViewItem>
+            <TreeViewItem Header="Produce">
+                <TreeViewItem Header="Fruits">
+                    
+                    <TreeViewItem Header="Apple"/>
+                    <TreeViewItem Header="Orange"/>
+                    <!--
+                    <TreeViewItem.Items>
+                        <StackPanel>
+                            <TextBlock Text="Apple" />
+                            <TextBlock Text="Orange" />
+                        </StackPanel>
+                    
+                    </TreeViewItem.Items>
+                    -->
+                </TreeViewItem>
+            </TreeViewItem>
+        </TreeView>
+
+        <!--#endregion -->
+
+        <Label Grid.Row="3" Grid.Column="1" Content="Source created TreeView" FontWeight="Bold" />
+        <TreeView x:Name="tvCustom1" Grid.Row="4" Grid.Column="1" BorderBrush="Black" BorderThickness="1px" />
+
+        <Label Grid.Row="1" Grid.Column="2" Content="Dynamic created TreeView" FontWeight="Bold" />
+        <TreeView x:Name="tvCustom2" Grid.Row="2" Grid.Column="2" BorderBrush="Black" BorderThickness="1px" />
+
+        <!-- Not working -->
+        <!-- Source: https://michaelscodingspot.com/displaying-any-net-object-in-a-wpf-treeview/ -->
+        <Label Grid.Row="3" Grid.Column="2" Content="Dynamic created TreeView" FontWeight="Bold" />
+        <!--<localControls:ObjectInTreeView x:Name="tvCustom3" Grid.Row="4" Grid.Column="2" BorderBrush="Black" BorderThickness="1px" ObjectToVisualize="{Binding Category, ElementName=mwMainWindow}" />-->
+        <localControls:ObjectInTreeView x:Name="tvCustom3" Grid.Row="4" Grid.Column="2" ObjectToVisualize="{Binding Category, ElementName=mwMainWindow}"/>
+    </Grid>
+</Window>

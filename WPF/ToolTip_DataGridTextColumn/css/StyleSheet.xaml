@@ -1,0 +1,28 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--#region L A B E L -->
+
+    <Style x:Name="defaultLabel" TargetType="Label">
+        <Setter Property="HorizontalAlignment"        Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment"          Value="Center" />
+        <Setter Property="VerticalContentAlignment"   Value="Center" />
+        <Setter Property="FontSize"                   Value="20px" />
+        <Setter Property="FontWeight"                 Value="Bold" />
+    </Style>
+
+    <!--#endregion-->
+
+    <!--#region D A T A G R I D -->
+
+    <Style x:Key="defaultDataGrid" TargetType="DataGrid">
+        <Setter Property="AutoGenerateColumns" Value="False" />
+        <Setter Property="AlternatingRowBackground" Value="#FFECECEC" />
+        <Setter Property="CanUserAddRows" Value="False" />
+        <Setter Property="SelectionMode" Value="Single" />
+    </Style>
+
+    <!--#endregion-->
+
+</ResourceDictionary>

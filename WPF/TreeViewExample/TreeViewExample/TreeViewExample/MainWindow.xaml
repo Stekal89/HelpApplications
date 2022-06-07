@@ -1,0 +1,61 @@
+﻿<Window x:Class="TreeViewExample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TreeViewExample"
+        xmlns:model="clr-namespace:TreeViewExample.Model"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        Height="450"
+        Width="246.588">
+    <Window.Resources>
+        <local:PersonSubitemConverter x:Key="PersonSubitemConverter"></local:PersonSubitemConverter>
+    </Window.Resources>
+    <Grid>
+        <TreeView x:Name="TreeView"
+                  ItemsSource="{Binding Persons}">
+            <TreeView.Resources>
+                <HierarchicalDataTemplate DataType="{x:Type model:Person}">
+                    <HierarchicalDataTemplate.ItemsSource>
+                        <MultiBinding Converter="{StaticResource PersonSubitemConverter}">
+                            <Binding Path="FavoriteBeers"></Binding>
+                            <Binding Path="FavoriteBooks"></Binding>
+                        </MultiBinding>
+                    </HierarchicalDataTemplate.ItemsSource>
+
+                    <TextBlock>
+                        <Run Text="{Binding Name}"></Run>
+                        <Run Text="("></Run>
+                        <Run Text="{Binding Age}"></Run>
+                        <Run Text=")"></Run>
+                    </TextBlock>
+                </HierarchicalDataTemplate>
+
+
+                <HierarchicalDataTemplate DataType="{x:Type model:FolderItem}"
+                                              ItemsSource="{Binding Path=Items}">
+                    <TextBlock Text="{Binding Path=Name}" />
+                </HierarchicalDataTemplate>
+
+                <HierarchicalDataTemplate DataType="{x:Type model:Beer}">
+                    <TextBlock>
+                        <Run Text="{Binding Name}"></Run>
+                        <Run Text=" - "></Run>
+                        <Run Text="{Binding Alcolhol}"></Run>
+                    </TextBlock>
+                </HierarchicalDataTemplate>
+
+                <HierarchicalDataTemplate DataType="{x:Type model:Book}">
+                    <TextBlock>
+                        <Run Text="{Binding Name}"></Run>
+                        <Run Text=" - "></Run>
+                        <Run Text="{Binding Isbn}"></Run>
+                    </TextBlock>
+                </HierarchicalDataTemplate>
+
+
+            </TreeView.Resources>
+        </TreeView>
+    </Grid>
+</Window>

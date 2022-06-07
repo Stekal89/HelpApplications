@@ -1,0 +1,57 @@
+﻿<UserControl x:Class="WPF_MultiselectionComboBox.UserControls.MultiSelectionCombobox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPF_MultiselectionComboBox.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="800">
+
+    <!--
+    Source from:
+    https://www.c-sharpcorner.com/blogs/multiselect-combobox-in-wpf 
+    -->
+
+    <Grid x:Name="grdMain" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2px,2px,10px,2px" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <ComboBox x:Name="cbxMain" Grid.Row="0" Grid.Column="0" 
+                  Height="{Binding ElementName=grdMain, Path=ActualHeight, Mode=OneWay}" Width="{Binding ElementName=grdMain, Path=ActualWidth, Mode=OneWay}"
+                  TextBoxBase.TextChanged="cbxMain_TextChanged"
+                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                  PreviewMouseLeftButtonDown="LeftMouseButtoncbxMain"
+                  IsEditable="True" IsReadOnly="True" IsTextSearchEnabled="False" 
+                  StaysOpenOnEdit="True" 
+                  Margin="0" Padding="0"
+                  SelectionChanged="cbxMain_SelectionChanged" 
+                  Text="{Binding SelectedFilter.DisplayName, Mode=TwoWay}" DropDownClosed="cbxMain_DropDownClosed" >
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <ToggleButton Height="{Binding ElementName=grdMain, Path=ActualHeight, Mode=OneWay}" 
+                                  Width="{Binding ElementName=grdMain, Path=ActualWidth, Mode=OneWay}"
+                                  Margin="-5,-2,-6,-2" Padding="5,0,0,0" 
+                                  Background="Transparent" 
+                                  BorderBrush="Transparent" >
+                        <CheckBox Name="chkObject" 
+                                  Checked="AllCheckbox_CheckedAndUnchecked" Unchecked="AllCheckbox_CheckedAndUnchecked"
+                                  Height="{Binding ElementName=grdMain, Path=ActualHeight, Mode=OneWay}" 
+                                  Width="{Binding ElementName=grdMain, Path=ActualWidth, Mode=OneWay}"
+                                  HorizontalContentAlignment="Left" HorizontalAlignment="Stretch" 
+                                  VerticalAlignment="Stretch" VerticalContentAlignment="Center"
+                                  IsChecked="{Binding ObjectStatus}" CommandParameter="{Binding ObjectId}" 
+                                  Margin="0,-1,0,-1" Padding="0,-2,0,-2" 
+                                  ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                                  Grid.IsSharedSizeScope="False" >
+                            <TextBlock Margin="5px,0px,0px,0px" Text="{Binding ObjectName}" />
+                        </CheckBox>
+                    </ToggleButton>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+    </Grid>
+</UserControl>

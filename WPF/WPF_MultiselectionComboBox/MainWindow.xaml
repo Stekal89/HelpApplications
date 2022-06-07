@@ -1,0 +1,39 @@
+﻿<Window x:Class="WPF_MultiselectionComboBox.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_MultiselectionComboBox"
+        xmlns:localControls="clr-namespace:WPF_MultiselectionComboBox.UserControls"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="MainWindow" Height="200" Width="300">
+
+    <!--
+    Source from:
+    https://www.c-sharpcorner.com/blogs/multiselect-combobox-in-wpf 
+    -->
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10px" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="10px" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10px" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="10px" />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="Selection:" VerticalAlignment="Center"/>
+
+            <localControls:MultiSelectionCombobox x:Name="cbxMultiBox" Grid.Row="1" Grid.Column="1" MinHeight="20px" MaxHeight="30px" MinWidth="200px" MaxWidth="200px" HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+        </Grid>
+    </Grid>
+</Window>
