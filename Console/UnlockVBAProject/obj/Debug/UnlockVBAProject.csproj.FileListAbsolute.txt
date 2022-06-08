@@ -1,0 +1,8 @@
+C:\Users\tstekovits\Desktop\UnlockVBAProject\bin\Debug\UnlockVBAProject.exe.config
+C:\Users\tstekovits\Desktop\UnlockVBAProject\bin\Debug\UnlockVBAProject.exe
+C:\Users\tstekovits\Desktop\UnlockVBAProject\bin\Debug\UnlockVBAProject.pdb
+C:\Users\tstekovits\Desktop\UnlockVBAProject\obj\Debug\UnlockVBAProject.csproj.AssemblyReference.cache
+C:\Users\tstekovits\Desktop\UnlockVBAProject\obj\Debug\UnlockVBAProject.csproj.SuggestedBindingRedirects.cache
+C:\Users\tstekovits\Desktop\UnlockVBAProject\obj\Debug\UnlockVBAProject.csproj.CoreCompileInputs.cache
+C:\Users\tstekovits\Desktop\UnlockVBAProject\obj\Debug\UnlockVBAProject.exe
+C:\Users\tstekovits\Desktop\UnlockVBAProject\obj\Debug\UnlockVBAProject.pdb

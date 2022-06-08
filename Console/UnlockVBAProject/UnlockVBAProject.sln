@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnlockVBAProject", "UnlockVBAProject.csproj", "{23FC9B88-8057-409C-9754-7FAF8DB4569E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{23FC9B88-8057-409C-9754-7FAF8DB4569E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23FC9B88-8057-409C-9754-7FAF8DB4569E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23FC9B88-8057-409C-9754-7FAF8DB4569E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23FC9B88-8057-409C-9754-7FAF8DB4569E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F0A75872-144F-417C-9979-C726BD4A5BC2}
+	EndGlobalSection
+EndGlobal
