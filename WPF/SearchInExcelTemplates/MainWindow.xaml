@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SearchInExcelTemplates"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Search in Excel Templates" MinHeight="450" MinWidth="800">
     <Window.Resources>
         <Style x:Key="styleGridSplitter" TargetType="GridSplitter" >
             <Setter Property="ResizeDirection"     Value="Rows" />
@@ -17,12 +17,39 @@
             <Setter Property="ResizeBehavior"      Value="PreviousAndNext" />
             <Setter Property="ShowsPreview"        Value="False" />
         </Style>
+
+        <!--<Style TargetType="GroupBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="GroupBox">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Border Grid.Row="0"
+                          BorderThickness="1" BorderBrush="Black"
+                          CornerRadius="0,0,0,0">
+                                <ContentPresenter 
+                          ContentSource="Header"
+                          RecognizesAccessKey="True" />
+                            </Border>
+                            <Border Grid.Row="1" BorderBrush="Black"
+                                    BorderThickness="1"
+                                    CornerRadius="0,0,0,0">
+                                <ContentPresenter Margin="4" />
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>-->
+        
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="10px" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="10px" />
@@ -33,15 +60,60 @@
             <ColumnDefinition Width="10px" />
         </Grid.ColumnDefinitions>
 
-        <!--#region Suchoptionen  -->
+        <!--#region Searchparameter  -->
 
+        <GroupBox Grid.Row="1" Grid.Column="1" Header="Parameter" BorderBrush="Black" BorderThickness="1px" Padding="10,10,10,10" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Content="Suchparameter:" VerticalContentAlignment="Center" Margin="0px,0px, 0px,2px" />
+                <TextBox x:Name="tbxSearchParameter" Grid.Row="0" Grid.Column="1" VerticalContentAlignment="Center" Margin="0px,0px, 0px,2px" />
+
+                <Label Grid.Row="1" Grid.Column="0" Content="Pfad:" VerticalContentAlignment="Center" Margin="0px,2px, 0px,2px" />
+                <TextBox x:Name="tbxPath" Grid.Row="1" Grid.Column="1" MinWidth="150px" VerticalContentAlignment="Center" Margin="0px,2px, 0px,2px" />
+
+                <Label Grid.Row="2" Grid.Column="0" Content="Filter:" VerticalContentAlignment="Center" Margin="0px,2px, 0px,0px" />
+                <TextBox x:Name="tbxFilter" Grid.Row="2" Grid.Column="1" VerticalContentAlignment="Center" Margin="0px,2px, 0px,0px" />
+            </Grid>
+        </GroupBox>
+        
         <!--#endregion-->
 
 
 
-        <!--#region TextEditor  -->
+        <!--#region Result (List)  -->
 
+        <GroupBox Grid.Row="2" Grid.Column="1" Header="Resultat" BorderBrush="Black" BorderThickness="1px" Padding="10,10,10,10" >
+            <ListView x:Name="lvResult">
+                
+            </ListView>
+        </GroupBox>
+        
         <!--#endregion-->
 
+        <!--#region Buttons -->
+        <Grid Grid.Row="3" Grid.Column="1" Margin="0px, 10px, 0px, 10px">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10px" />
+                <RowDefinition Height="60px" />
+                <RowDefinition Height="10px" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Row="1" Grid.Column="0">ClickMe</Button>
+        </Grid>
+        
+        <!--#endregion-->
+        
     </Grid>
 </Window>

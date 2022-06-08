@@ -158,9 +158,9 @@ namespace SearchInExcelTemplates
                 GC.Collect();
             }
 
-            System.Diagnostics.Debugger.Break();
+            //System.Diagnostics.Debugger.Break();
 
-            mainWindow.Close();
+            //mainWindow.Close();
 
         }
     }
