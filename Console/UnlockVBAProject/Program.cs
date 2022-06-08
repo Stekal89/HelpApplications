@@ -143,7 +143,6 @@ namespace UnlockVBAProject
                 {
                     Excel.Workbooks objWorkBooks = objExcel.Workbooks;
                     objWorkBooks.Close();
-                    var test = objExcel.ActiveWorkbook.VBProject;
                     
                     System.Runtime.InteropServices.Marshal.ReleaseComObject(objWorkBooks);
                     objWorkBooks = null;
