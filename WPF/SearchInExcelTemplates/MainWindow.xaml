@@ -18,7 +18,7 @@
             <Setter Property="ShowsPreview"        Value="False" />
         </Style>
 
-        <!--<Style TargetType="GroupBox">
+        <Style TargetType="GroupBox">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="GroupBox">
@@ -27,23 +27,33 @@
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
-                            <Border Grid.Row="0"
-                          BorderThickness="1" BorderBrush="Black"
-                          CornerRadius="0,0,0,0">
-                                <ContentPresenter 
-                          ContentSource="Header"
-                          RecognizesAccessKey="True" />
-                            </Border>
-                            <Border Grid.Row="1" BorderBrush="Black"
-                                    BorderThickness="1"
-                                    CornerRadius="0,0,0,0">
+                            <Grid Grid.Row="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="5px" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <!-- Header -->
+                                <Border Grid.Row="1" Grid.Column="0" BorderThickness="1,1,0,0" BorderBrush="Black" CornerRadius="0,0,0,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                                <Label Grid.Row="0" Grid.RowSpan="2" Grid.Column="1">
+                                    <ContentPresenter ContentSource="Header" RecognizesAccessKey="True" />
+                                </Label>
+                                <Border Grid.Row="1" Grid.Column="2"  BorderThickness="0,1,1,0" BorderBrush="Black" CornerRadius="0,0,0,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                            </Grid>
+                            
+                            <!-- Content -->
+                            <Border Grid.Row="1" BorderBrush="Black" BorderThickness="1,0,1,1" CornerRadius="0,0,0,0" Padding="10,10,10,10" Margin="0,0,0,0">
                                 <ContentPresenter Margin="4" />
                             </Border>
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-        </Style>-->
+        </Style>
         
     </Window.Resources>
     <Grid>
