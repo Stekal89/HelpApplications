@@ -1,0 +1,17 @@
+C:\Users\tstekovits\Documents\GitHub\HelpApplications\WPF\WPF_SquaredGroupBox\bin\Debug\WPF_SquaredGroupBox.exe.config
+C:\Users\tstekovits\Documents\GitHub\HelpApplications\WPF\WPF_SquaredGroupBox\bin\Debug\WPF_SquaredGroupBox.exe
+C:\Users\tstekovits\Documents\GitHub\HelpApplications\WPF\WPF_SquaredGroupBox\bin\Debug\WPF_SquaredGroupBox.pdb
+C:\Users\tstekovits\Documents\GitHub\HelpApplications\WPF\WPF_SquaredGroupBox\obj\Debug\WPF_SquaredGroupBox.csproj.AssemblyReference.cache
+C:\Users\tstekovits\Documents\GitHub\HelpApplications\WPF\WPF_SquaredGroupBox\obj\Debug\WPF_SquaredGroupBox.csproj.SuggestedBindingRedirects.cache
+C:\Users\tstekovits\Documents\GitHub\HelpApplications\WPF\WPF_SquaredGroupBox\obj\Debug\MainWindow.g.cs
+C:\Users\tstekovits\Documents\GitHub\HelpApplications\WPF\WPF_SquaredGroupBox\obj\Debug\App.g.cs
+C:\Users\tstekovits\Documents\GitHub\HelpApplications\WPF\WPF_SquaredGroupBox\obj\Debug\WPF_SquaredGroupBox_MarkupCompile.cache
+C:\Users\tstekovits\Documents\GitHub\HelpApplications\WPF\WPF_SquaredGroupBox\obj\Debug\WPF_SquaredGroupBox_MarkupCompile.lref
+C:\Users\tstekovits\Documents\GitHub\HelpApplications\WPF\WPF_SquaredGroupBox\obj\Debug\MainWindow.baml
+C:\Users\tstekovits\Documents\GitHub\HelpApplications\WPF\WPF_SquaredGroupBox\obj\Debug\WPF_SquaredGroupBox.g.resources
+C:\Users\tstekovits\Documents\GitHub\HelpApplications\WPF\WPF_SquaredGroupBox\obj\Debug\WPF_SquaredGroupBox.Properties.Resources.resources
+C:\Users\tstekovits\Documents\GitHub\HelpApplications\WPF\WPF_SquaredGroupBox\obj\Debug\WPF_SquaredGroupBox.csproj.GenerateResource.cache
+C:\Users\tstekovits\Documents\GitHub\HelpApplications\WPF\WPF_SquaredGroupBox\obj\Debug\WPF_SquaredGroupBox.csproj.CoreCompileInputs.cache
+C:\Users\tstekovits\Documents\GitHub\HelpApplications\WPF\WPF_SquaredGroupBox\obj\Debug\WPF_SquaredGroupBox.exe
+C:\Users\tstekovits\Documents\GitHub\HelpApplications\WPF\WPF_SquaredGroupBox\obj\Debug\WPF_SquaredGroupBox.pdb
+C:\Users\tstekovits\Documents\GitHub\HelpApplications\WPF\WPF_SquaredGroupBox\obj\Debug\css\Style.baml
