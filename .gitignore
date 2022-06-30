@@ -1,0 +1,9 @@
+
+*.pdb
+WPF/WPF_SquaredGroupBox/bin/Debug/WPF_SquaredGroupBox.exe
+WPF/WPF_SquaredGroupBox/bin/Debug/WPF_SquaredGroupBox.pdb
+WPF/WPF_SquaredGroupBox/obj/Debug/MainWindow.baml
+WPF/WPF_SquaredGroupBox/obj/Debug/MainWindow.g.cs
+WPF/WPF_SquaredGroupBox/obj/Debug/MainWindow.g.i.cs
+WPF/WPF_SquaredGroupBox/obj/Debug/WPF_SquaredGroupBox.exe
+WPF/WPF_SquaredGroupBox/obj/Debug/WPF_SquaredGroupBox.g.resources
