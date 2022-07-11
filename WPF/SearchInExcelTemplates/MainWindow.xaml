@@ -7,61 +7,19 @@
         mc:Ignorable="d"
         Title="Search in Excel Templates" MinHeight="450" MinWidth="800">
     <Window.Resources>
-        <Style x:Key="styleGridSplitter" TargetType="GridSplitter" >
-            <Setter Property="ResizeDirection"     Value="Rows" />
-            <Setter Property="HorizontalAlignment" Value="Stretch" />
-            <Setter Property="Foreground"          Value="Black" />
-            <Setter Property="Background"          Value="Black" />
-            <Setter Property="Height"              Value="1px" />
-            <Setter Property="Margin"              Value="0px,8px,0px,8px" />
-            <Setter Property="ResizeBehavior"      Value="PreviousAndNext" />
-            <Setter Property="ShowsPreview"        Value="False" />
-        </Style>
-
-        <Style TargetType="GroupBox">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="GroupBox">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-                            <Grid Grid.Row="0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="5px" />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <!-- Header -->
-                                <Border Grid.Row="1" Grid.Column="0" BorderThickness="1,1,0,0" BorderBrush="Black" CornerRadius="0,0,0,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
-                                <Label Grid.Row="0" Grid.RowSpan="2" Grid.Column="1">
-                                    <ContentPresenter ContentSource="Header" RecognizesAccessKey="True" />
-                                </Label>
-                                <Border Grid.Row="1" Grid.Column="2"  BorderThickness="0,1,1,0" BorderBrush="Black" CornerRadius="0,0,0,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
-                            </Grid>
-                            
-                            <!-- Content -->
-                            <Border Grid.Row="1" BorderBrush="Black" BorderThickness="1,0,1,1" CornerRadius="0,0,0,0" Padding="10,10,10,10" Margin="0,0,0,0">
-                                <ContentPresenter Margin="4" />
-                            </Border>
-                        </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/SearchInExcelTemplates;component/css/MainStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Window.Resources>
-    <Grid>
+    <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="10px" />
+            <RowDefinition Height="Auto" MaxHeight="187px" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="50px" />
             <RowDefinition Height="10px" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -71,59 +29,163 @@
         </Grid.ColumnDefinitions>
 
         <!--#region Searchparameter  -->
+        
+        <ScrollViewer  Grid.Row="1" Grid.Column="1" VerticalScrollBarVisibility="Auto" >
+            <GroupBox x:Name="gbSearchParameter" Grid.Row="1" Grid.Column="1" Header="Parameter" BorderBrush="Black" BorderThickness="1px" Padding="10,10,10,10" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-        <GroupBox Grid.Row="1" Grid.Column="1" Header="Parameter" BorderBrush="Black" BorderThickness="1px" Padding="10,10,10,10" >
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Content="Suchparameter:" VerticalContentAlignment="Center" Margin="0px,0px, 0px,2px" />
+                    <TextBox x:Name="tbxSearchParameter" Grid.Row="0" Grid.Column="1" VerticalContentAlignment="Center" Margin="0px,0px, 0px,2px" />
 
-                <Label Grid.Row="0" Grid.Column="0" Content="Suchparameter:" VerticalContentAlignment="Center" Margin="0px,0px, 0px,2px" />
-                <TextBox x:Name="tbxSearchParameter" Grid.Row="0" Grid.Column="1" VerticalContentAlignment="Center" Margin="0px,0px, 0px,2px" />
+                    <Label Grid.Row="1" Grid.Column="0" Content="Pfad:" VerticalContentAlignment="Center" Margin="0px,2px, 0px,0px" />
+                    <TextBox x:Name="tbxPath" Grid.Row="1" Grid.Column="1" MinWidth="150px" VerticalContentAlignment="Center" Margin="0px,2px, 0px,0px" />
 
-                <Label Grid.Row="1" Grid.Column="0" Content="Pfad:" VerticalContentAlignment="Center" Margin="0px,2px, 0px,2px" />
-                <TextBox x:Name="tbxPath" Grid.Row="1" Grid.Column="1" MinWidth="150px" VerticalContentAlignment="Center" Margin="0px,2px, 0px,2px" />
+                    <Label Grid.Row="2" Grid.Column="0" Content="Filter:" VerticalContentAlignment="Center" Margin="0px,2px, 0px,0px" />
+                    <TextBox x:Name="tbxFilter" Grid.Row="2" Grid.Column="1" VerticalContentAlignment="Center" Margin="0px,2px, 0px,0px" Text="*.xlsm, *.xlsb, *.xlt, *.xltm" />
 
-                <Label Grid.Row="2" Grid.Column="0" Content="Filter:" VerticalContentAlignment="Center" Margin="0px,2px, 0px,0px" />
-                <TextBox x:Name="tbxFilter" Grid.Row="2" Grid.Column="1" VerticalContentAlignment="Center" Margin="0px,2px, 0px,0px" />
-            </Grid>
-        </GroupBox>
+                    <Label Grid.Row="3" Grid.Column="0" Content="Passwort:" VerticalContentAlignment="Center" Margin="0px,2px, 0px,0px" />
+                    <PasswordBox x:Name="pbPassword" Grid.Row="3" Grid.Column="1" VerticalContentAlignment="Center" Margin="0px,2px, 0px,0px"  />
+
+                    <CheckBox x:Name="cbMatch" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Content="Match Case" Margin="5px,5px, 0px,0px" />
+                </Grid>
+            </GroupBox>
+        </ScrollViewer>
         
         <!--#endregion-->
 
-
+        <GridSplitter Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource styleGridSplitter}" />
 
         <!--#region Result (List)  -->
 
-        <GroupBox Grid.Row="2" Grid.Column="1" Header="Resultat" BorderBrush="Black" BorderThickness="1px" Padding="10,10,10,10" >
-            <ListView x:Name="lvResult">
-                
+        <GroupBox x:Name="gbResult" Grid.Row="3" Grid.Column="1" Header="Resultat" BorderBrush="Black" BorderThickness="1px" Padding="10,10,10,10" >
+            <!--<ListView x:Name="lvResult" SelectionMode="Multiple" MouseRightButtonDown="ContextMenuLvResult" SelectionChanged="SelectionChangedLvResult">-->
+            <ListView x:Name="lvResult" SelectionMode="Multiple" MouseRightButtonDown="ContextMenuLvResult" >
+                <ListView.ContextMenu>
+                    <ContextMenu x:Name="cbListView" >
+                        <MenuItem x:Name="miCopy" Header="Kopieren" Command="{Binding Path=DataContext.MoreInfo, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListView}}" Background="WhiteSmoke" Click="ClickMiCopy" />
+                    </ContextMenu>
+                </ListView.ContextMenu>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListViewItem}">
+                        <EventSetter Event="PreviewMouseRightButtonDown"
+                         Handler="OnListViewItemPreviewMouseRightButtonDown" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+
+                <!--<ListView.Resources>
+                    <ContextMenu x:Key="ItemContextMenu">
+                        <MenuItem x:Name="miCopy" Header="Kopieren" Command="{Binding Path=DataContext.MoreInfo, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListView}}" Background="WhiteSmoke" Click="ClickMiCopy" />
+                    </ContextMenu>
+                </ListView.Resources>
+                 <ListView.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListViewItem}" >
+                        <Setter Property="ContextMenu" Value="{StaticResource ItemContextMenu}" />
+                    </Style>
+                </ListView.ItemContainerStyle>-->
+                <ListView.View>
+                    <GridView x:Name="grdView" >
+                        
+                        <!--<GridView.ColumnHeaderContextMenu>
+                            <ContextMenu x:Name="cmGridViewHeaders">
+                                <MenuItem x:Name="cmiHideHeader" Header="Spalte ausblenden" Click="Click_CmiHideHeader" />
+                                <MenuItem x:Name="cmiShowHeader" Header="Spalten einblenden" Click="Click_CmiShowHeader" />
+                                <Separator />
+                                <MenuItem x:Name="cmiSaveHeaderSettings" Header="Spalten Einstellungen speichern" Click="Click_CmiSaveHeaderSettings"/>
+                                <MenuItem x:Name="cmiLoadHeaderSettings" Header="Spalten Einstellungen laden" Click="Click_CmiLoadHeaderSettings"/>
+                            </ContextMenu>
+                        </GridView.ColumnHeaderContextMenu>-->
+
+                        <GridViewColumn Width="Auto" Header="Dateipfad"   DisplayMemberBinding="{Binding FilePath}"   TextBlock.TextAlignment="Left" />
+                        <GridViewColumn Width="Auto" Header="Modul-Name" DisplayMemberBinding="{Binding ModuleName}" TextBlock.TextAlignment="Left" />
+                        <GridViewColumn Width="Auto" Header="Zeile"  DisplayMemberBinding="{Binding RowNumber}"  TextBlock.TextAlignment="Right" />
+                        <GridViewColumn Width="Auto" Header="Zeileninhalt" DisplayMemberBinding="{Binding RowContent}" TextBlock.TextAlignment="Left" />
+                        <GridViewColumn Width="Auto" Header="InfoMsg"    DisplayMemberBinding="{Binding InfoMsg}"    TextBlock.TextAlignment="Left" />
+                        
+                        <GridViewColumn Width="Auto" Header="Modul-Existiert" DisplayMemberBinding="{Binding ModuleExist}" TextBlock.TextAlignment="Center" />
+                        <GridViewColumn Width="Auto" Header="Geschützt"   DisplayMemberBinding="{Binding Protected}"   TextBlock.TextAlignment="Center" />
+                        <GridViewColumn Width="Auto" Header="Vorhanden" DisplayMemberBinding="{Binding SearchMatch}" TextBlock.TextAlignment="Center" />
+
+                        
+
+                        <!--<GridViewColumn Header="Results" Width="30">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate DataType="viewModel:MyViewModel">
+                                    <Expander Margin="-5,2,-5000,0" HorizontalAlignment="Left" Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type ItemsPresenter}}}">
+                                        <TreeView DataContext="{Binding Path=FileResult}" Text="{Binding Path=RowInfos, Mode=TwoWay}">
+
+                                        </TreeView >
+                                        
+                                        --><!--<GroupBox Header="Description" FontWeight="Bold" Margin="0,0,5,0">
+                                            --><!--<TextBlock Text="{Binding Model.Description}" FontWeight="Normal" TextWrapping="Wrap" />--><!--
+                                            <TextBlock DataContext="{Binding Path=FileResult}" Text="{Binding Path=RowInfos, Mode=TwoWay}" FontWeight="Normal" TextWrapping="Wrap" />
+                                        </GroupBox>--><!--
+                                    </Expander>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>-->
+
+                    </GridView>
+                </ListView.View>
             </ListView>
+
+            
         </GroupBox>
-        
+
         <!--#endregion-->
 
         <!--#region Buttons -->
-        <Grid Grid.Row="3" Grid.Column="1" Margin="0px, 10px, 0px, 10px">
+        <Grid x:Name="grdButtons" Grid.Row="4" Grid.Column="1" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="10px" />
-                <RowDefinition Height="60px" />
+                <RowDefinition Height="30px" />
                 <RowDefinition Height="10px" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100px"/>
+                <ColumnDefinition Width="10px"/>
+                <ColumnDefinition Width="100px"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="150px"/>
+                <ColumnDefinition Width="10px"/>
+                <ColumnDefinition Width="150px"/>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Row="1" Grid.Column="0">ClickMe</Button>
+            <Button x:Name="btnSelectAll"  Grid.Row="1" Grid.Column="0" Visibility="Collapsed" Click="ClickBtnSelectAll">Alle</Button>
+            <Button x:Name="btnUnselectAll" Grid.Row="1" Grid.Column="2" Click="ClickBtnUnselectAll" Visibility="Collapsed">Keine</Button>
+
+            <Button x:Name="btnRevert"  Grid.Row="1" Grid.Column="4" Click="ClickBtnRevert">Zurücksetzen</Button>
+            <Button x:Name="btnSearch" Grid.Row="1" Grid.Column="6" Click="ClickBtnSearch" >Suche</Button>
         </Grid>
-        
+
         <!--#endregion-->
-        
+
+        <!--#region  ProgressBar-->
+
+        <!-- ProgressBar + State -->
+        <Border x:Name="pbProgress" Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Visibility="Collapsed" Style="{StaticResource pbBorder}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <!-- Very Good -->
+                <ProgressBar x:Name="pbStatus" IsIndeterminate="True" Style="{StaticResource progressBar}" />
+                <Viewbox Style="{StaticResource pbViewBox}" >
+                    <TextBlock x:Name="tbStatus" />
+                </Viewbox>
+            </Grid>
+        </Border>
+
+        <!--#endregion-->
     </Grid>
 </Window>

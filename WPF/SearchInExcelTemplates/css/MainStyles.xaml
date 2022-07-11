@@ -1,0 +1,92 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--#region  G R O U P B O X   ( F R A M E )-->
+    
+    <Style TargetType="GroupBox">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="GroupBox">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="5px" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <!-- Header -->
+                            <Border Grid.Row="1" Grid.Column="0" BorderThickness="1,1,0,0" BorderBrush="Black" CornerRadius="0,0,0,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                            <Label Grid.Row="0" Grid.RowSpan="2" Grid.Column="1">
+                                <ContentPresenter ContentSource="Header" RecognizesAccessKey="True" />
+                            </Label>
+                            <Border Grid.Row="1" Grid.Column="2"  BorderThickness="0,1,1,0" BorderBrush="Black" CornerRadius="0,0,0,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                        </Grid>
+
+                        <!-- Content -->
+                        <Border Grid.Row="1" BorderBrush="Black" BorderThickness="1,0,1,1" CornerRadius="0,0,0,0" Padding="10,10,10,10" Margin="0,0,0,0">
+                            <ContentPresenter Margin="4" />
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--#endregion-->
+
+    <!--#region G R I D S P L I T T E R-->
+    
+    <Style x:Key="styleGridSplitter" TargetType="GridSplitter" >
+            <Setter Property="ResizeDirection"     Value="Rows" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="Foreground"          Value="Black" />
+            <Setter Property="Background"          Value="Black" />
+            <Setter Property="Height"              Value="1px" />
+            <Setter Property="Margin"              Value="7px,8px,7px,8px" />
+            <Setter Property="ResizeBehavior"      Value="PreviousAndNext" />
+            <Setter Property="ShowsPreview"        Value="False" />
+        </Style>
+    <!--#endregion-->
+    
+    <!--#region  P R O G R E S S B A R-->
+
+    <!-- Border of ProgressBar -->
+    <Style x:Key="pbBorder" TargetType="Border">
+        <Setter Property="Margin"          Value="21px" />
+        <Setter Property="BorderBrush"     Value="Black" />
+        <Setter Property="BorderThickness" Value="0.1px" />
+        <Setter Property="MaxHeight"       Value="60px" />
+        <Setter Property="Background"      Value="White" />
+    </Style>
+
+    <!-- Default ProgressBar -->
+    <Style x:Key="progressBar" TargetType="ProgressBar">
+        <Setter Property="Minimum"         Value="0" />
+        <Setter Property="Maximum"         Value="100" />
+        <Setter Property="IsIndeterminate" Value="False" />
+        <Setter Property="MaxHeight"       Value="20px" />
+        <Setter Property="BorderBrush"     Value="Black" />
+        <Setter Property="BorderThickness" Value="0.5px" />
+        <Setter Property="Margin"          Value="20px,20px,20px,20px" />
+        <Setter Property="Foreground"      Value="SteelBlue" />
+    </Style>
+
+    <!-- Viewbox in ProgressBar-->
+    <Style x:Key="pbViewBox" TargetType="Viewbox">
+        <Setter Property="TextBlock.HorizontalAlignment" Value="Center" />
+        <Setter Property="TextBlock.VerticalAlignment" Value="Center" />
+        <Setter Property="TextBlock.TextAlignment" Value="Center" />
+        <Setter Property="Margin" Value="25px,22px,25px,22px" />
+    </Style>
+
+    <!--#endregion-->
+
+</ResourceDictionary>
