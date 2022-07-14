@@ -15,9 +15,12 @@ namespace SearchInExcelTemplates.Models
 {
     public class FileResult
     {
-        [System.Runtime.InteropServices.DllImport("user32.dll", SetLastError = true)]
-        static extern bool BringWindowToTop(IntPtr hWnd);
+        //[System.Runtime.InteropServices.DllImport("user32.dll", SetLastError = true)]
+        //static extern bool BringWindowToTop(IntPtr hWnd);
 
+        [System.Runtime.InteropServices.DllImport("user32.dll", SetLastError = true)]
+        static extern bool SetForegroundWindow(IntPtr hWnd);
+        
         public string FilePath { get; set; }
 
         public bool ModuleExist { get; set; } = false;
@@ -69,10 +72,10 @@ namespace SearchInExcelTemplates.Models
             // Microsoft.Vbe.Interop
             // Microsoft.Office.Interop.Excel
 
-            if (FilePath == @"C:\DEV\Source\Excel\Release.4.5\Diverse\Einkauf\Alvorada_BestellEvidenz.xlt")
-            {
-                System.Diagnostics.Debugger.Break();
-            }
+            //if (FilePath == @"C:\DEV\Source\Excel\Release.4.5\Diverse\Einkauf\Alvorada_BestellEvidenz.xlt")
+            //{
+            //    System.Diagnostics.Debugger.Break();
+            //}
 
             error = null;
 
@@ -85,6 +88,9 @@ namespace SearchInExcelTemplates.Models
             Excel.Application objExcel = null;
             Excel.Workbook objWorkbook = null;
             VBA.VBComponents objModules = null;
+
+            //System.Diagnostics.EventLog eventLog = new System.Diagnostics.EventLog();
+            //eventLog.Source = "SearchInExcelTemplates";
 
             try
             {
@@ -129,24 +135,26 @@ namespace SearchInExcelTemplates.Models
                         objProject.VBE.MainWindow.Visible = true;
                         objProject.VBE.MainWindow.SetFocus();
 
-                        BringWindowToTop((IntPtr)objProject.VBE.MainWindow.HWnd);
+                        SetForegroundWindow((IntPtr)objProject.VBE.MainWindow.HWnd);
 
 
                         objExcel.VBE.ActiveVBProject = objProject;
-                        int pauseTime = 100;
+                        int pauseTime = 1000;
 
                         SendKeys.SendWait("%{F10}");
-                        System.Threading.Thread.Sleep(pauseTime);
-
+                        objProject.VBE.MainWindow.SetFocus();
+                        SetForegroundWindow((IntPtr)objProject.VBE.MainWindow.HWnd);
                         System.Threading.Thread.Sleep(pauseTime);
 
                         SendKeys.SendWait("%TE");
+                        System.Threading.Thread.Sleep(pauseTime);
+
                         SendKeys.SendWait(objSearchConfiguration.PasswordAsPlainText);
                         System.Threading.Thread.Sleep(pauseTime);
 
                         SendKeys.SendWait("{ENTER}");
-
                         System.Threading.Thread.Sleep(pauseTime);
+
                         SendKeys.SendWait("{ESCAPE}");
 
                         objExcel.VBE.MainWindow.Visible = false;
@@ -280,7 +288,7 @@ namespace SearchInExcelTemplates.Models
             return false;
         }
 
-        #endregion
+            #endregion
 
-    }
+        }
 }
