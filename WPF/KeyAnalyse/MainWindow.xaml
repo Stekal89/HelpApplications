@@ -1,0 +1,32 @@
+﻿<Window x:Class="KeyAnalyse.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KeyAnalyse"
+        mc:Ignorable="d"
+        KeyDown="Grid_KeyDown"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid x:Name="grdMain" KeyDown="Grid_KeyDown">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10px" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30px" />
+            <RowDefinition Height="10px" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10px" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="10px" />
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Pressed Key:" FontSize="20px" FontWeight="Bold" />
+        <Label x:Name="lblPressedKey" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalAlignment="Center" FontSize="20px" FontWeight="Bold" Content="Test"  />
+
+        <TextBox x:Name="tbxTextBox" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" />
+
+        <Button Grid.Row="3" Grid.Column="2" Content="Simulate" Width="150px" MaxWidth="150px" HorizontalAlignment="Right" HorizontalContentAlignment="Center" Click="Button_Click" />
+    </Grid>
+</Window>
