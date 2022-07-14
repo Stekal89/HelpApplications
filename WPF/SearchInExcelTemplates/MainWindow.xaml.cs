@@ -44,11 +44,6 @@ namespace SearchInExcelTemplates
         public MainWindow()
         {
             InitializeComponent();
-
-            tbxSearchParameter.Text = "objectplace";
-            tbxPath.Text = @"C:\tmp\ExcelTemplates";
-            pbPassword.Password = "MyTestPassWord";
-            
         }
 
         #region Functions
