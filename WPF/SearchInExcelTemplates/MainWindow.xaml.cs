@@ -230,7 +230,9 @@ namespace SearchInExcelTemplates
 
             ProcessStatus = eProcessStatus.LoadFiles;
 
-            // Erstelle Background-Task für den ProgressBar
+            DateTime dtStartTime = DateTime.Now;
+
+            // Create Background-Task for ProgressBar
             using (BackgroundWorker worker = new BackgroundWorker())
             {
                 worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
@@ -276,10 +278,16 @@ namespace SearchInExcelTemplates
 
                 if (null != FileResults && FileResults.Count > 0)
                 {
+                    DateTime dtEndTime = DateTime.Now;
                     this.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
                     {
-                        strCurrMsg += $"{m_ReadSuccessfully} Dateien von {m_MaxFile} erfolgreich geladen.\r\n";
-                        strCurrMsg += $"{FileResults.Count} Vorkommnisse für \"{tbxSearchParameter.Text}\" in {m_MaxFile} Dateien gefunden.\r\n";
+                        strCurrMsg += $"--------------------------------------------\r\n"                                                            +
+                                      $"{m_ReadSuccessfully} Dateien von {m_MaxFile} erfolgreich geladen.\r\n"                                       +
+                                      $"{FileResults.Count} Vorkommnisse für \"{tbxSearchParameter.Text}\" in {m_MaxFile} Dateien gefunden.\r\n\r\n" +
+                                      $"Start: \"{dtStartTime}\"\r\n"                                                                                +
+                                      $"Ende: \"{dtEndTime}\"\r\n"                                                                                   +
+                                      $"Dauer: \"{dtEndTime - dtStartTime}\""                                                                        +
+                                      $"--------------------------------------------\r\n";
                     }));
                 }
                 else
