@@ -72,11 +72,6 @@ namespace SearchInExcelTemplates.Models
             // Microsoft.Vbe.Interop
             // Microsoft.Office.Interop.Excel
 
-            //if (FilePath == @"C:\DEV\Source\Excel\Release.4.5\Diverse\Einkauf\Alvorada_BestellEvidenz.xlt")
-            //{
-            //    System.Diagnostics.Debugger.Break();
-            //}
-
             error = null;
 
             if (string.IsNullOrEmpty(FilePath))
@@ -137,16 +132,24 @@ namespace SearchInExcelTemplates.Models
 
                         SetForegroundWindow((IntPtr)objProject.VBE.MainWindow.HWnd);
 
-
                         objExcel.VBE.ActiveVBProject = objProject;
                         int pauseTime = 1000;
 
                         SendKeys.SendWait("%{F10}");
-                        objProject.VBE.MainWindow.SetFocus();
-                        SetForegroundWindow((IntPtr)objProject.VBE.MainWindow.HWnd);
+                        //objProject.VBE.MainWindow.SetFocus();
+                        //SetForegroundWindow((IntPtr)objProject.VBE.MainWindow.HWnd);
                         System.Threading.Thread.Sleep(pauseTime);
 
-                        SendKeys.SendWait("%TE");
+                        switch (objSearchConfiguration.OfficeLanguage)
+                        {
+                            case eOfficeLanguage.German:
+                                SendKeys.SendWait("%XI");
+                                break;
+                            case eOfficeLanguage.English:
+                                SendKeys.SendWait("%TE");
+                                break;
+                        }
+                        
                         System.Threading.Thread.Sleep(pauseTime);
 
                         SendKeys.SendWait(objSearchConfiguration.PasswordAsPlainText);

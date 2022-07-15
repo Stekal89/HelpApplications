@@ -16,7 +16,7 @@
     <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="10px" />
-            <RowDefinition Height="Auto" MaxHeight="187px" />
+            <RowDefinition Height="Auto" MaxHeight="195px" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="50px" />
@@ -57,7 +57,25 @@
                     <Label Grid.Row="3" Grid.Column="0" Content="Passwort:" VerticalContentAlignment="Center" Margin="0px,2px, 0px,0px" />
                     <PasswordBox x:Name="pbPassword" Grid.Row="3" Grid.Column="1" VerticalContentAlignment="Center" Margin="0px,2px, 0px,0px"  />
 
-                    <CheckBox x:Name="cbMatch" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Content="Match Case" Margin="5px,5px, 0px,0px" />
+                    <CheckBox x:Name="cbMatch" Grid.Row="4" Grid.Column="0" Content="Match Case" VerticalAlignment="Center" Margin="0px,2px, 0px,0px" />
+
+                    <Grid Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        
+                        <GridSplitter Grid.Column="0" ResizeDirection="Auto" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="0px,2px,5px,0px" Foreground="Black" Width="1px" />
+
+                        <Label Grid.Column="1" Content="Office-Sprache:" VerticalContentAlignment="Center" Margin="0px,2px, 0px,0px" />
+                        <ComboBox x:Name="cbxLanguage" Grid.Column="2" Margin="0px,5px, 0px,0px" VerticalAlignment="Center" IsEditable="True" MinWidth="100px" >
+                            <ComboBoxItem x:Name="cbiGerman" IsSelected="True" >Deutsch</ComboBoxItem>
+                            <ComboBoxItem x:Name="cbiEnglish">Englisch</ComboBoxItem>
+                        </ComboBox>
+                    </Grid>
+                    
                 </Grid>
             </GroupBox>
         </ScrollViewer>
@@ -181,7 +199,7 @@
                 <!-- Very Good -->
                 <ProgressBar x:Name="pbStatus" IsIndeterminate="True" Style="{StaticResource progressBar}" />
                 <Viewbox Style="{StaticResource pbViewBox}" >
-                    <TextBlock x:Name="tbStatus" />
+                    <TextBlock x:Name="tbStatus" Text="Stuff on line1&#x0a;Stuff on line 2" />
                 </Viewbox>
             </Grid>
         </Border>

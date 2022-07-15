@@ -13,6 +13,12 @@ namespace SearchInExcelTemplates.Models
         Folder,
         File
     }
+
+    public enum eOfficeLanguage
+    {
+        German,
+        English
+    }
     public class SearchConfiguration
     {
         public string SearchParameter { get; set; }
@@ -25,6 +31,11 @@ namespace SearchInExcelTemplates.Models
         public bool MatchCase { get; set; }
 
         public eFolderOrFilePath FolderOrFilePath { get; set; } = eFolderOrFilePath.Nothing;
+
+        /// <summary>
+        /// Will be needed for the Short-Key to open the Password-Dialog in VBA Editor
+        /// </summary>
+        public eOfficeLanguage OfficeLanguage { get; set; }
 
         #region Functions
 

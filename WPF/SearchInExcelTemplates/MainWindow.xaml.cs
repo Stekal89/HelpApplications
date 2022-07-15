@@ -181,6 +181,7 @@ namespace SearchInExcelTemplates
             pbPassword.Password = null;
             cbMatch.IsChecked = false;
             lvResult.ItemsSource = null;
+            cbxLanguage.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -209,10 +210,32 @@ namespace SearchInExcelTemplates
                 bRequiredValidation = false;
             }
 
+            if (cbxLanguage.SelectedIndex < 0)
+            {
+                strMsg += "- Keine Office-Sprache angegeben!\r\n";
+                bRequiredValidation = false;
+            }
+
             if (!bRequiredValidation)
             {
                 MessageBox.Show(this, strMsg, "SearchInExcelTemplates-Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
+            }
+
+            // Load all existing Excel-Processes and close them
+            List<System.Diagnostics.Process> processes = System.Diagnostics.Process.GetProcessesByName("EXCEL").ToList();
+            if (null != processes && processes.Count > 0)
+            {
+                if (MessageBoxResult.No == MessageBox.Show(this, "Alle Excel-Prozesse werden nun geschlossen um die Suche der Dateien zu gewährleisten, bitte prüfen sie ob sie noch nicht abgespeicherte Excel-Dateien geöffnet haben und klicken sie anschließend auf Ja.\r\n\r\n" +
+                                                             "Möchten sie die Suche jetzt starten?", "SearchInExcelTemplates-Interaktion", MessageBoxButton.YesNo, MessageBoxImage.Question))
+                {
+                    return;
+                }
+
+                foreach (var process in processes)
+                {
+                    process.Kill();
+                }
             }
 
             SearchConfiguration objSearchConfiguration = new SearchConfiguration()
@@ -221,7 +244,8 @@ namespace SearchInExcelTemplates
                 Path                = tbxPath.Text.Replace("\"", null),
                 Filter              = tbxFilter.Text,
                 PasswordAsPlainText = pbPassword.Password,
-                MatchCase           = null != cbMatch.IsChecked ? (bool)cbMatch.IsChecked : false
+                MatchCase           = null != cbMatch.IsChecked ? (bool)cbMatch.IsChecked : false,
+                OfficeLanguage      = cbxLanguage.SelectedIndex == 0 ? eOfficeLanguage.German : eOfficeLanguage.English
             };
 
             lvResult.ItemsSource = null;
@@ -253,7 +277,7 @@ namespace SearchInExcelTemplates
                 }
                 error += er;
 
-                if(objSearchConfiguration.SearchInFiles(out er))
+                if (objSearchConfiguration.SearchInFiles(out er))
                 {
                     this.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
                     {
@@ -327,137 +351,6 @@ namespace SearchInExcelTemplates
             });
         }
 
-        private void WithoutProgressBarClickBtnSearch(object sender, RoutedEventArgs e)
-        {
-            string strMsg = null;
-            string error = null;
-            bool bRequiredValidation = true;
-
-            m_ReadSuccessfully = 0;
-
-            // Validate input
-            // Required fields:
-            if (string.IsNullOrEmpty(tbxSearchParameter.Text))
-            {
-                strMsg += "- Kein Suchparameter angegeben!\r\n";
-                bRequiredValidation = false;
-            }
-            if (string.IsNullOrEmpty(tbxPath.Text))
-            {
-                strMsg += "- Kein Pfad angegeben!\r\n";
-                bRequiredValidation = false;
-            }
-
-            if (!bRequiredValidation)
-            {
-                MessageBox.Show(this, strMsg, "SearchInExcelTemplates-Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
-            SearchConfiguration objSearchConfiguration = new SearchConfiguration()
-            {
-                SearchParameter = tbxSearchParameter.Text,
-                Path = tbxPath.Text.Replace("\"", null),
-                Filter = tbxFilter.Text,
-                PasswordAsPlainText = pbPassword.Password,
-                MatchCase = null != cbMatch.IsChecked ? (bool)cbMatch.IsChecked : false
-            };
-
-            lvResult.ItemsSource = null;
-            btnSelectAll.Visibility = Visibility.Collapsed;
-            btnUnselectAll.Visibility = Visibility.Collapsed;
-
-            ProcessStatus = eProcessStatus.LoadFiles;
-
-            //// Erstelle Background-Task für den ProgressBar
-            //using (BackgroundWorker worker = new BackgroundWorker())
-            //{
-            //    worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
-            //    worker.WorkerReportsProgress = true;
-            //    worker.DoWork += Worker_DoWork;
-            //    worker.ProgressChanged += Worker_ProgressChanged;
-            //    worker.RunWorkerAsync();
-            //}
-
-            //var taskFactory = System.Threading.Tasks.Task.Factory.StartNew(() =>
-            //{
-                string er = null;
-                // Check if folderpath exists
-                if (!objSearchConfiguration.ValidatePath(out er))
-                {
-                    error += er;
-                    //return false;
-                }
-                error += er;
-
-                if (objSearchConfiguration.SearchInFiles(out er))
-                {
-                    this.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
-                    {
-                        lvResult.ItemsSource = null;
-                        lvResult.ItemsSource = FileResults;
-                        ClickBtnSelectAll(btnSelectAll, null);
-                    }));
-                }
-                error += er;
-
-            //    return true;
-            //});
-
-            //System.Threading.Tasks.Task.Run(() =>
-            //{
-            //    taskFactory.Wait();
-
-                ProcessStatus = eProcessStatus.Finished;
-
-                string strCurrMsg = "# # # RESULT # # #\r\n\r\n";
-
-
-                if (null != FileResults && FileResults.Count > 0)
-                {
-                    //this.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
-                    //{
-                        strCurrMsg += $"{m_ReadSuccessfully} Dateien von {m_MaxFile} erfolgreich geladen.\r\n";
-                        strCurrMsg += $"{FileResults.Count} Vorkommnisse für \"{tbxSearchParameter.Text}\" in {m_MaxFile} Dateien gefunden.\r\n";
-                    //}));
-                }
-                else
-                {
-                    //this.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
-                    //{
-                        strCurrMsg += $"{m_ReadSuccessfully} Dateien von {m_MaxFile} erfolgreich geladen.\r\n";
-                        strCurrMsg += $"Keine Vorkommnisse für \"{tbxSearchParameter.Text}\" in {m_MaxFile} Dateien gefunden.\r\n";
-                    //}));
-                }
-
-                if (!string.IsNullOrEmpty(error))
-                {
-                    //this.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
-                    //{
-                        strCurrMsg += $"\r\n# # # ERROR # # #\r\n{error}";
-                    //}));
-                }
-
-                //this.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
-                //{
-                    MessageDialog objMsgDialog = new MessageDialog(strCurrMsg, $"{App.AppName}-Suche");
-                    objMsgDialog.ShowDialog();
-                //}));
-
-                //this.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
-                //{
-                    lvResult.ItemsSource = null;
-                    lvResult.ItemsSource = FileResults;
-
-                    if (null != lvResult.Items && lvResult.Items.Count > 0)
-                    {
-                        btnSelectAll.Visibility = Visibility.Visible;
-                        btnUnselectAll.Visibility = Visibility.Visible;
-                    }
-                //}));
-            //});
-        }
-
         #endregion
 
         #region ProgressBar
@@ -508,7 +401,7 @@ namespace SearchInExcelTemplates
             {
                 this.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
                 {
-                    tbStatus.Text = $"Suche in {m_ActFile} von {m_MaxFile} Dateien...";
+                    tbStatus.Text = $"Suche in {m_ActFile} von {m_MaxFile} Dateien... | {m_ReadSuccessfully} Dateien bereits erfolgreich geladen.";
                     worker.ReportProgress(m_ActFile);
                 }
                 ));

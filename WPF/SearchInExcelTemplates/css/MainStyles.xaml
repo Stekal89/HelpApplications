@@ -87,6 +87,40 @@
         <Setter Property="Margin" Value="25px,22px,25px,22px" />
     </Style>
 
+    <!--#region  Big ProgressBar-->
+
+    <!-- Border of ProgressBar -->
+    <!--<Style x:Key="pbBorder" TargetType="Border">
+        <Setter Property="Margin"          Value="21px" />
+        <Setter Property="BorderBrush"     Value="Black" />
+        <Setter Property="BorderThickness" Value="0.1px" />
+        <Setter Property="MaxHeight"       Value="90px" />
+        <Setter Property="Background"      Value="White" />
+    </Style>-->
+
+    <!-- Default ProgressBar -->
+    <!--<Style x:Key="progressBar" TargetType="ProgressBar">
+        <Setter Property="Minimum"         Value="0" />
+        <Setter Property="Maximum"         Value="100" />
+        <Setter Property="IsIndeterminate" Value="False" />
+        <Setter Property="MaxHeight"       Value="40px" />
+        <Setter Property="BorderBrush"     Value="Black" />
+        <Setter Property="BorderThickness" Value="0.5px" />
+        <Setter Property="Margin"          Value="20px,20px,20px,20px" />
+        <Setter Property="Foreground"      Value="SteelBlue" />
+    </Style>-->
+
+    <!-- Viewbox in ProgressBar-->
+    <!--<Style x:Key="pbViewBox" TargetType="Viewbox">
+        <Setter Property="TextBlock.HorizontalAlignment" Value="Center" />
+        <Setter Property="TextBlock.VerticalAlignment" Value="Center" />
+        <Setter Property="TextBlock.TextAlignment" Value="Center" />
+        <Setter Property="TextBlock.MaxHeight" Value="40px" />
+        <Setter Property="Margin" Value="25px,22px,25px,22px" />
+    </Style>-->
+
+    <!--#endregion-->
+
     <!--#endregion-->
 
 </ResourceDictionary>
