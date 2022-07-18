@@ -129,10 +129,10 @@
                         <GridViewColumn Width="Auto" Header="Zeile"  DisplayMemberBinding="{Binding RowNumber}"  TextBlock.TextAlignment="Right" />
                         <GridViewColumn Width="Auto" Header="Zeileninhalt" DisplayMemberBinding="{Binding RowContent}" TextBlock.TextAlignment="Left" />
                         <GridViewColumn Width="Auto" Header="InfoMsg"    DisplayMemberBinding="{Binding InfoMsg}"    TextBlock.TextAlignment="Left" />
-                        
-                        <GridViewColumn Width="Auto" Header="Modul-Existiert" DisplayMemberBinding="{Binding ModuleExist}" TextBlock.TextAlignment="Center" />
-                        <GridViewColumn Width="Auto" Header="Geschützt"   DisplayMemberBinding="{Binding Protected}"   TextBlock.TextAlignment="Center" />
-                        <GridViewColumn Width="Auto" Header="Vorhanden" DisplayMemberBinding="{Binding SearchMatch}" TextBlock.TextAlignment="Center" />
+
+                        <!--<GridViewColumn Width="Auto" Header="Modul-Existiert" DisplayMemberBinding="{Binding ModuleExist}" TextBlock.TextAlignment="Center" />-->
+                        <!--<GridViewColumn Width="Auto" Header="Geschützt"   DisplayMemberBinding="{Binding Protected}"   TextBlock.TextAlignment="Center" />-->
+                        <!--<GridViewColumn Width="Auto" Header="Vorhanden" DisplayMemberBinding="{Binding SearchMatch}" TextBlock.TextAlignment="Center" />-->
 
                         
 

@@ -102,15 +102,22 @@ namespace SearchInExcelTemplates
 
                     // Create Table for Clipboard
                     sb.Append($"<table>");
-                    sb.AppendFormat($"<tr>"                     +
-                                    $"<td>Dateipfad</td>"       +
-                                    $"<td>Modul-Name</td>"      +
-                                    $"<td>Zeile</td>"           +
-                                    $"<td>Zeileninhalt</td>"    +
-                                    $"<td>InfoMsg</td>"         +
-                                    $"<td>Modul-Existiert</td>" +
-                                    $"<td>Geschützt</td>"       +
-                                    $"<td>Vorhanden</td>"       +
+                    //sb.AppendFormat($"<tr>"                     +
+                    //                $"<td>Dateipfad</td>"       +
+                    //                $"<td>Modul-Name</td>"      +
+                    //                $"<td>Zeile</td>"           +
+                    //                $"<td>Zeileninhalt</td>"    +
+                    //                $"<td>InfoMsg</td>"         +
+                    //                $"<td>Modul-Existiert</td>" +
+                    //                $"<td>Geschützt</td>"       +
+                    //                $"<td>Vorhanden</td>"       +
+                    //                $"</tr>");
+                    sb.AppendFormat($"<tr>"                  +
+                                    $"<td>Dateipfad</td>"    +
+                                    $"<td>Modul-Name</td>"   +
+                                    $"<td>Zeile</td>"        +
+                                    $"<td>Zeileninhalt</td>" +
+                                    $"<td>InfoMsg</td>"      +
                                     $"</tr>");
 
                     foreach (var item in lvResult.SelectedItems)
@@ -118,16 +125,23 @@ namespace SearchInExcelTemplates
                         if (item is FileResult objFileResult)
                         {
                             // TableRow
-                            sb.AppendFormat($"<tr>"                                 +
-                                            $"<td>{objFileResult.FilePath}</td>"    +
-                                            $"<td>{objFileResult.ModuleName}</td>"  +
-                                            $"<td>{objFileResult.RowNumber}</td>"   +
-                                            $"<td>{objFileResult.RowContent}</td>"  +
-                                            $"<td>{objFileResult.InfoMsg}</td>"     +
-                                            $"<td>{objFileResult.ModuleExist}</td>" +
-                                            $"<td>{objFileResult.Protected}</td>"   +
-                                            $"<td>{objFileResult.SearchMatch}</td>" +
-                                            $"</tr>");
+                            //sb.AppendFormat($"<tr>"                                 +
+                            //                $"<td>{objFileResult.FilePath}</td>"    +
+                            //                $"<td>{objFileResult.ModuleName}</td>"  +
+                            //                $"<td>{objFileResult.RowNumber}</td>"   +
+                            //                $"<td>{objFileResult.RowContent}</td>"  +
+                            //                $"<td>{objFileResult.InfoMsg}</td>"     +
+                            //                $"<td>{objFileResult.ModuleExist}</td>" +
+                            //                $"<td>{objFileResult.Protected}</td>"   +
+                            //                $"<td>{objFileResult.SearchMatch}</td>" +
+                            //                $"</tr>");
+                            sb.AppendFormat($"<tr>"                            +
+                                        $"<td>{objFileResult.FilePath}</td>"   +
+                                        $"<td>{objFileResult.ModuleName}</td>" +
+                                        $"<td>{objFileResult.RowNumber}</td>"  +
+                                        $"<td>{objFileResult.RowContent}</td>" +
+                                        $"<td>{objFileResult.InfoMsg}</td>"    +
+                                        $"</tr>");
                         }
                     }
                     sb.Append("<table>");
