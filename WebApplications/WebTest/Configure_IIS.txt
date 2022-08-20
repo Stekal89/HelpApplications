@@ -1,0 +1,35 @@
+1) Configure IIS Express like in the video: https://www.youtube.com/watch?v=_t9u9DKlKP4&ab_channel=ITProGuide
+	a) In Visual Studio create, or open Web-Applikation -> start the application for the first time (IIS Express) just to be sure, that the needed configuration files are created
+	b) Open config File "%APPLICATIONPATH%\.vs\%APPLICATIONNAME%\config\applicationhost.config" (in the hiden ".vs" folder)
+	c) Search for the <bindings> Tags
+	d) Replace "localhost" to the current IP-Address of your pc/notebook
+	e) Open the IIS Express configuration/properties in Visual Studio (the Expander next to the Debug-Start button under the Ribbon) 
+	f) Replace "localhost" to the current IP-Address of your pc/notebook
+	g) Only for Angular:
+		- %PROJECTNAME%.csproj
+			<SpaProxyServerUrl>https://localhost:44485</SpaProxyServerUrl>
+		- %APPPATH%\ClientApp\node_modules\@angular\cli\lib\config\schema.json
+				"host": {
+				"type": "string",
+				"description": "Host to listen on.",
+				"default": "localhost"
+			},
+		- ClientApp\node_modules\@angular-devkit\build-angular\src\builders\dev-server\schema.json
+				"host": {
+				"type": "string",
+				"description": "Host to listen on.",
+				"default": "localhost"
+			},
+2) Create Firewall Rule : netsh advfirewall firewall add rule name="Open Port 80" dir=in action=allow protocol=TCP localport=80
+	or
+		using the "Windows Defender Firewall with Advanced Security" -> Port Rule
+
+
+Damit der IIS Express mit der Custom-URL funktioniert, muss das Visual Studio zwingend als Administrator ausgeführt werden
+!!! IMPORTANT !!!
+So that die configured Settings (using IP-Address instead of "localhost") is working, you have to run Visual Studio as Administrator.
+
+Also good:
+https://raybiztech.com/resources/white-papers/iis-express-configuration-to-host-websites
+
+Example of how to configure a website using the IIS Express as host.
