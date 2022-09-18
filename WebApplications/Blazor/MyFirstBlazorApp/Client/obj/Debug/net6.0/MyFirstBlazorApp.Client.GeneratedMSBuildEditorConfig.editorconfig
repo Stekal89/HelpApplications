@@ -26,6 +26,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNeUZpcnN0Q29tcG9uZW50LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Thomas/Documents/GitHub/HelpApplications/WebApplications/Blazor/MyFirstBlazorApp/Client/Components/MySecondComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNeVNlY29uZENvbXBvbmVudC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Thomas/Documents/GitHub/HelpApplications/WebApplications/Blazor/MyFirstBlazorApp/Client/Pages/Admin/AdminUsers.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQWRtaW5Vc2Vycy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 

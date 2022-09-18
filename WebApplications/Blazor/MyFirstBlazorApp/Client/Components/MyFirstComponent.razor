@@ -1,3 +1,16 @@
-﻿<div>
-    <h2>This is my first component</h2>
+﻿@*
+    Componets -> One-way binding:
+
+
+    At this point we have a component displaying inside a page, but the content is static. What we really want is to be able to output content dynamically.
+
+    If we alter the contents of /Components/MyFirstComponent.razor we can introduce a private member and output the value of that member using the @ symbol.
+*@
+
+<div>
+    CurrentCounterValue in MyFirstComponent is @CurrentCounterValue
 </div>
+
+@code {
+    private int CurrentCounterValue = 42;
+}

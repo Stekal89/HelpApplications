@@ -15,6 +15,11 @@
 *@
 <button class="btn btn-primary" @onclick=IncrementCounter>Increment counter</button>
 
+@*
+    Components: Receiving values via Parameters
+
+*@
+<MySecondComponent CurrentCounterValue=@currentCount/>
 
 @*
     Finally, the @code section of the page is declared. This is where we write our properties / methods, event handlers, or whatever else we need.
