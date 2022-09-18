@@ -50,7 +50,6 @@ WebApplications/WebTest/BlazorApp1/obj/Debug/net6.0/staticwebassets.development.
 WebApplications/WebTest/BlazorApp1/obj/project.assets.json
 WebApplications/WebTest/BlazorApp1/obj/project.nuget.cache
 WebApplications/WebTest/BlazorApp1/obj/staticwebassets.pack.sentinel
-*.js
 WebApplications/Blazor/MyFirstBlazorApp/Client/bin/Debug/net6.0/dotnet.timezones.blat
 WebApplications/Blazor/MyFirstBlazorApp/Client/bin/Debug/net6.0/dotnet.wasm
 WebApplications/Blazor/MyFirstBlazorApp/Client/bin/Debug/net6.0/icudt.dat
@@ -74,7 +73,6 @@ WebApplications/Blazor/MyFirstBlazorApp/Client/bin/Debug/net6.0/Microsoft.Extens
 WebApplications/Blazor/MyFirstBlazorApp/Client/bin/Debug/net6.0/Microsoft.Extensions.FileProviders.Abstractions.dll
 WebApplications/Blazor/MyFirstBlazorApp/Client/bin/Debug/net6.0/Microsoft.Extensions.FileProviders.Physical.dll
 WebApplications/Blazor/MyFirstBlazorApp/Client/bin/Debug/net6.0/Microsoft.Extensions.FileSystemGlobbing.dll
-*.dll
 WebApplications/Blazor/MyFirstBlazorApp/Client/bin/Debug/net6.0/MyFirstBlazorApp.Client.staticwebassets.runtime.json
 WebApplications/Blazor/MyFirstBlazorApp/Client/bin/Debug/net6.0/wwwroot/_framework/blazor.boot.json
 WebApplications/Blazor/MyFirstBlazorApp/Client/bin/Debug/net6.0/wwwroot/_framework/blazor.webassembly.js.gz
@@ -532,3 +530,7 @@ WebApplications/Blazor/MyFirstBlazorApp/Server/obj/Debug/net6.0/MyFirstBlazorApp
 WebApplications/Blazor/MyFirstBlazorApp/Server/obj/Debug/net6.0/MyFirstBlazorApp.Server.csproj.AssemblyReference.cache
 WebApplications/Blazor/MyFirstBlazorApp/Server/obj/Debug/net6.0/MyFirstBlazorApp.Server.csproj.AssemblyReference.cache
 WebApplications/Blazor/MyFirstBlazorApp/Server/obj/Debug/net6.0/MyFirstBlazorApp.Server.csproj.AssemblyReference.cache
+WebApplications/Blazor/MyFirstBlazorApp/Server/obj/Debug/*
+WebApplications/Blazor/MyFirstBlazorApp/Server/bin/*
+WebApplications/Blazor/MyFirstBlazorApp/Client/bin/*
+WebApplications/Blazor/MyFirstBlazorApp/.vs/*
