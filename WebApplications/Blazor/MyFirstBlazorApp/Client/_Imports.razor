@@ -9,6 +9,7 @@
 @using MyFirstBlazorApp.Client
 @using MyFirstBlazorApp.Client.Shared
 
+
 @*
     Specifying a default layout for the app
     The most generic way to specify a layout is to edit the/Pages/_Imports.razor file and edit the single line of code to identify a different layout.
@@ -28,3 +29,17 @@
     simply by grouping them within their own child-folder that has its own _Imports.razor file.
 *@
 
+
+@*
+    Components:
+
+
+    <MyFirstBlazorApp.Client.Components.MyFirstComponent />
+
+
+    Or edit /_Imports.razor and add "@using MyFirstBlazorApp.Client.Components".
+    The using statements here are cascaded into all Razor views – which means the mark-up
+    to use the new component in /Pages/Index.razor no longer needs a namespace.
+*@
+
+@using MyFirstBlazorApp.Client.Components

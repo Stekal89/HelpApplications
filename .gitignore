@@ -533,4 +533,5 @@ WebApplications/Blazor/MyFirstBlazorApp/Server/obj/Debug/net6.0/MyFirstBlazorApp
 WebApplications/Blazor/MyFirstBlazorApp/Server/obj/Debug/*
 WebApplications/Blazor/MyFirstBlazorApp/Server/bin/*
 WebApplications/Blazor/MyFirstBlazorApp/Client/bin/*
+WebApplications/Blazor/MyFirstBlazorApp/Client/obj/*
 WebApplications/Blazor/MyFirstBlazorApp/.vs/*
