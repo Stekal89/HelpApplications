@@ -7,3 +7,34 @@
 @page "/admin/users"
 @layout MainLayout
 <h2>Users</h2>
+
+
+@*
+    First we descend our view from LayoutComponentBase, then we tell Blazor that we want this layout to be contained within the MainLayout Razor view,
+    and finally we render any content declared by a consuming view by outputting the contents of the Body property.
+
+    In order to ensure the AdminUsers page uses the AdminLayout, ensure there is no explicit @layout at the top of the AdminUsers.razor file.
+    This will tell Blazor to use the layout specified in Pages/Admin/_Imports.razor.
+
+     _________________________________________________________________________
+    |                               MainLayout                                |
+    |                                                                         |
+    |    _________________________________________________________________    |
+    |   |                           Admin Layout                          |   |
+    |   |   @layout MainLayout                                            |   |
+    |   |                                                                 |   |
+    |   |    __________________________________________________________   |   |
+    |   |   |                       /Pages/Counter                    |   |   |
+    |   |   |   @layout AdminLayout                                   |   |   |
+    |   |   |                                                         |   |   |
+    |   |   |                                                         |   |   |
+    |   |   |                                                         |   |   |
+    |   |   |_________________________________________________________|   |   |
+    |   |                                                                 |   |
+    |   |                                                                 |   |
+    |   |_________________________________________________________________|   |
+    |                                                                         |
+    |                                                                         |
+    |_________________________________________________________________________|
+
+*@
