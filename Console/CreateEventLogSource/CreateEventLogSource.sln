@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31911.196
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateEventLogSource", "CreateEventLogSource.csproj", "{161144CB-7C12-4FE0-AA26-E238A9D1CFF5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{161144CB-7C12-4FE0-AA26-E238A9D1CFF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{161144CB-7C12-4FE0-AA26-E238A9D1CFF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{161144CB-7C12-4FE0-AA26-E238A9D1CFF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{161144CB-7C12-4FE0-AA26-E238A9D1CFF5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {91C5C617-2DC1-4FC0-BAEF-C16942C935E3}
+	EndGlobalSection
+EndGlobal
