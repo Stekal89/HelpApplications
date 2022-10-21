@@ -1,0 +1,78 @@
+﻿@*
+    Directieves 2
+
+    Directive attributes
+
+    Directive attributes allow us to pass additional information to directives. If we think of a directive as a class, then directive attributes are its members.
+
+    To pass this additional information we need to repeat the directive, and then append a : followed by the name of the attribute that the directive supports.
+
+    For example, by default our browser will propagate an element's events up the tree until it finally reaches the HTML document itself. A plain HTML + JavaScript demonstration
+    of this would be to output text to the console when an element is clicked.
+
+    <html>
+      <body>
+        <div onclick="console.log('Top level clicked')">
+          <h1>Top level</h1>
+          <div onclick="console.log('Second level clicked')">
+            <h2>Second level</h2>
+            <div onclick="console.log('Third level clicked')">
+              <h3>Third level</h3>
+            </div>
+          </div>
+        </div>
+      </body>
+    </html>
+
+    Because the div elements are nested, when one of them is clicked that event will trigger not only the onclick code on the div itself, but it will also trigger the onclick on its parent div, which in turn will trigger then event on its own
+    parent div - and so on, until the current element has no parent.
+*@
+
+@page "/MySecondDirectives"
+
+<h3>MySecondDirectives</h3>
+
+@using System.Diagnostics
+
+
+
+@*
+    define the @onclick attribute and declare which C# method to execute when the Browser onclick event is triggered.
+*@
+<div @onclick=TopLevelClicked>
+    <h1>Top level</h1>
+    @*To prevent an event propagating up the element tree JavaScript has a stopPropagation method on the event. Blazor prevents propagation using a directive 
+    attribute - @onclick:stopPropagation.*@
+
+    @*
+    Line 6 adds an additional @onclick:stopPropagation to prevent the browser propagating the click up from the second to the first level. More DOM events will be 
+    covered in the section about DOM events.
+    *@
+    <div @onclick=SecondLevelClicked @onclick:stopPropagation>
+        <h2>Second level</h2>
+        <div @onclick=ThirdLevelClicked>
+            <h3>Third level</h3>
+        </div>
+    </div>
+</div>
+
+@code
+{
+    private void TopLevelClicked()
+    {
+        Debug.WriteLine("Top level clicked");
+        Debugger.Break();
+    }
+
+    private void SecondLevelClicked()
+    {
+        Debug.WriteLine("Second level clicked");
+        Debugger.Break();
+    }
+
+    private void ThirdLevelClicked()
+    {
+        Debug.WriteLine("Third level clicked");
+        Debugger.Break();
+    }
+}
