@@ -1,0 +1,37 @@
+﻿@page "/MyThirdExpressionComponentView"
+@using MyFirstBlazorApp.Client.Models
+
+@*Expressions 3*@
+
+<h3>MyThirdExpressionComponentView</h3>
+<div class="row">
+
+    <div class="col-4">To HTML attribute using .ToString()</div>
+
+    <div class="col-8"><input readonly value=@MyPerson /></div>
+
+
+    <div class="col-4">To component as object</div>
+    <div class="col-8">
+        <MyThirdComponentObjectAsParam Person=@MyPerson />
+    </div>
+</div>
+
+@code
+{
+    
+    Person MyPerson;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        // Creates an instance of Person
+        MyPerson = new Person
+        {
+            Salutation = "Mr",
+            GivenName = "Peter",
+            FamilyName = "Morris"
+        };
+    }
+}

@@ -1,0 +1,34 @@
+﻿
+@*
+    Literals
+    Any value passed to an HTML attribute (not prepended with @) is considered a literal value. When passing a value to a [Parameter] decorated property on a Blazor component this isn't always the case (I'll go into detail here), but for the most part this rule holds true.
+
+    Type         | Razor        | view                                     | HTML
+    -------------------------------------------------------------------------------------------
+    HTML         | attribute    | <input size=8/>                          | <input size="8"/>
+    Component    | parameter    | <MyHeader Text="Hello" Visible=true/>    | <h1>Hello</h1>
+
+    Where MyHeader is defined as so:
+*@
+
+@page "/MyFirstLiteralComponent"
+
+@if (Visible)
+{
+    <h1>@Text</h1>
+}
+
+
+@code
+{
+    [Parameter]
+    public bool Visible { get; set; } = true;
+
+    [Parameter]
+    public string Text { get; set; } = "Testheader";
+}
+
+@*
+    With the exception of Inferred expressions (which only apply to parameters on Components, not HTML attributes), 
+    when rendering a component what you see in the HTML is literally what you wrote in the mark-up.
+*@

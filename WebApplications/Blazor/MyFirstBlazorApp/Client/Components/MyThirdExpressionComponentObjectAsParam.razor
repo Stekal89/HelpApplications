@@ -1,0 +1,35 @@
+﻿@page "/MyThirdExpressionComponentObjectAsParam"
+@using MyFirstBlazorApp.Client.Models
+
+@*Expressions 3*@
+@*
+    To prove that Blazor passes objects by reference to other components, create a new component that takes an instance of Person as a [Parameter]. 
+    Create a new component named PersonView and enter the following mark-up:
+*@
+
+@*<h3>MyThirdExpressionComponentObjectAsParam</h3>*@
+
+<div class="row">
+    @*
+    If Person is not null, the Salutation, GivenName, and FamilyName are displayed.
+    *@
+    <div class="col-2">Salutation</div>
+    <div class="col-10">@Person?.Salutation</div>
+</div>
+<div class="row">
+    <div class="col-2">Given name</div>
+    <div class="col-10">@Person?.GivenName</div>
+</div>
+<div class="row">
+    <div class="col-2">Family name</div>
+    <div class="col-10">@Person?.FamilyName</div>
+</div>
+@code
+{
+    @*
+    Declares a property named Person which is of type Person, and decorates it with the [Parameter] 
+    attribute so that its value may be set in Razor mark-up by any consuming components.
+    *@
+    [Parameter]
+    public Person? Person { get; set; }
+}

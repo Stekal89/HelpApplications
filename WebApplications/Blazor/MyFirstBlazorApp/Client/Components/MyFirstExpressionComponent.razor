@@ -1,0 +1,67 @@
+﻿@page "/MyFirstExpressionComponent"
+
+@*
+    Expressions
+    When we need to render HTML that contains dynamic values, rather than fixed literal values, we need to use expressions. 
+    We indicate to Blazor that we are using an expression by prepending an @ symbol before the value we assign. 
+    Blazor will then try to interpret the text after the @ as a valid piece of C# code, such as a member name, or a method invocation.
+
+    Given a code section in our component that defines the following members and values:
+        int InputSize = 8;
+        bool HeaderVisible = true;
+        string HeaderText = "Value of variable";
+
+        private int DoubleInputSize()
+        {
+            return InputSize \*2;
+        }
+
+    ___________________________________________________________________________________________
+    ___________________________________________________________________________________________
+    We would expect to see the following:
+
+    Razor view                                           |  HTML
+    -------------------------------------------------------------------------------------------
+    <input value=@InputSize/>                            |  <input value="8"/>
+    <input value=@DoubleInputSize()/>	                 |  <input value="16"/>
+    <MyHeader Text=@HeaderText Visible=@HeaderVisible/>  |  <h1>Value of variable</h1>
+    
+    In my case the "MyHeader" => "MyFirstLiteralComponent"
+
+
+*@
+
+<input value=@InputSize />
+<input value=@DoubleInputSize() />
+<MyFirstLiteralComponent Text=@HeaderText Visible=@HeaderVisible/> 
+<hr />
+
+@code
+{
+    int InputSize = 8;
+    bool HeaderVisible = true;
+    string HeaderText = "Value of variable";
+
+    private int DoubleInputSize()
+    {
+        return InputSize * 2;
+    }
+}
+
+
+@*
+    Expressions 1
+
+    We can even pass more complex expressions, such as string interpolation and/or calculated values, 
+    by enclosing the expression text in brackets.
+
+    Razor view                                         |  HTML
+    ---------------------------------------------------------------------------------
+    <input size=@(InputSize * 3) />                    |  <input size="24"/>
+    <input value=@($"Size is {InputSize}") />          |  <input value="Size is 8"/>
+    <input value=@($"Size is {DoubleInputSize()}") />  |  <input size="Size is 16"/>
+*@
+
+<input size=@(InputSize * 3) value="@(InputSize * 3)" />
+<input value=@($"Size is {InputSize}") />
+<input value=@($"Size is {DoubleInputSize()}") />

@@ -1,0 +1,45 @@
+﻿@page "/MySecondExpressionComponent"
+@using MyFirstBlazorApp.Client.Models
+
+<h3>MySecondExpressionComponent</h3>
+<div class="row">
+    <div class="col-4">To HTML attribute using .ToString()</div>
+
+    @* Passes the Person instance as an HTML attribute *@
+    <div class="col-8"><input readonly value=@MyPerson /></div>
+</div>
+
+@code
+{
+    /*
+       Expressions 2
+       
+        Expressions that evaluate to complex types
+        Complex types can also be passed as a parameter value to both HTML attributes and also Blazor components' [Parameter] properties.
+        When passing a non-simple value as an expression to an HTML attribute, Blazor will render the value using ValuePassed.ToString();
+        when the value is being passed to a [Parameter] property on a Blazor component, the object itself is passed.
+
+        Take the following Person class as an example:
+
+
+
+        If we create an instance of Person in one of our views, we can pass that instance as a value to a standard HTML attribute and Blazor will 
+        use the overridden ToString() method to represent the value.
+     */
+
+    // Declares a member of type Person
+    Person? MyPerson;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        // Creates an instance of Person
+        MyPerson = new Person
+        {
+            Salutation = "Mr",
+            GivenName = "Peter",
+            FamilyName = "Morris"
+        };
+    }
+}

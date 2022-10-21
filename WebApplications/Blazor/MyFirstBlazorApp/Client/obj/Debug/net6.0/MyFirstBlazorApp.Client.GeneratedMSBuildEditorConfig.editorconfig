@@ -26,8 +26,28 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNeUZpcnN0Q29tcG9uZW50LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Thomas/Documents/GitHub/HelpApplications/WebApplications/Blazor/MyFirstBlazorApp/Client/Components/MyFirstExpressionComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNeUZpcnN0RXhwcmVzc2lvbkNvbXBvbmVudC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Thomas/Documents/GitHub/HelpApplications/WebApplications/Blazor/MyFirstBlazorApp/Client/Components/MyFirstLiteralComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNeUZpcnN0TGl0ZXJhbENvbXBvbmVudC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Thomas/Documents/GitHub/HelpApplications/WebApplications/Blazor/MyFirstBlazorApp/Client/Components/MySecondComponent.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNeVNlY29uZENvbXBvbmVudC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Thomas/Documents/GitHub/HelpApplications/WebApplications/Blazor/MyFirstBlazorApp/Client/Components/MySecondExpressionComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNeVNlY29uZEV4cHJlc3Npb25Db21wb25lbnQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Thomas/Documents/GitHub/HelpApplications/WebApplications/Blazor/MyFirstBlazorApp/Client/Components/MyThirdExpressionComponentObjectAsParam.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNeVRoaXJkRXhwcmVzc2lvbkNvbXBvbmVudE9iamVjdEFzUGFyYW0ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Thomas/Documents/GitHub/HelpApplications/WebApplications/Blazor/MyFirstBlazorApp/Client/Components/MyThirdExpressionComponentView.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNeVRoaXJkRXhwcmVzc2lvbkNvbXBvbmVudFZpZXcucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Thomas/Documents/GitHub/HelpApplications/WebApplications/Blazor/MyFirstBlazorApp/Client/Pages/Admin/AdminUsers.razor]
