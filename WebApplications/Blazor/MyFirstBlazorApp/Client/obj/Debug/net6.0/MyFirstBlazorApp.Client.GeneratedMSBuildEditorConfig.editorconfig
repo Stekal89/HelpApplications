@@ -22,32 +22,32 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Thomas/Documents/GitHub/HelpApplications/WebApplications/Blazor/MyFirstBlazorApp/Client/Components/MyFirstComponent.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNeUZpcnN0Q29tcG9uZW50LnJhem9y
+[C:/Users/Thomas/Documents/GitHub/HelpApplications/WebApplications/Blazor/MyFirstBlazorApp/Client/Components/LiteralsExpressionDirectives/MyFirstComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMaXRlcmFsc0V4cHJlc3Npb25EaXJlY3RpdmVzXE15Rmlyc3RDb21wb25lbnQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Thomas/Documents/GitHub/HelpApplications/WebApplications/Blazor/MyFirstBlazorApp/Client/Components/MyFirstExpressionComponent.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNeUZpcnN0RXhwcmVzc2lvbkNvbXBvbmVudC5yYXpvcg==
+[C:/Users/Thomas/Documents/GitHub/HelpApplications/WebApplications/Blazor/MyFirstBlazorApp/Client/Components/LiteralsExpressionDirectives/MyFirstExpressionComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMaXRlcmFsc0V4cHJlc3Npb25EaXJlY3RpdmVzXE15Rmlyc3RFeHByZXNzaW9uQ29tcG9uZW50LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Thomas/Documents/GitHub/HelpApplications/WebApplications/Blazor/MyFirstBlazorApp/Client/Components/MyFirstLiteralComponent.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNeUZpcnN0TGl0ZXJhbENvbXBvbmVudC5yYXpvcg==
+[C:/Users/Thomas/Documents/GitHub/HelpApplications/WebApplications/Blazor/MyFirstBlazorApp/Client/Components/LiteralsExpressionDirectives/MyFirstLiteralComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMaXRlcmFsc0V4cHJlc3Npb25EaXJlY3RpdmVzXE15Rmlyc3RMaXRlcmFsQ29tcG9uZW50LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Thomas/Documents/GitHub/HelpApplications/WebApplications/Blazor/MyFirstBlazorApp/Client/Components/MySecondComponent.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNeVNlY29uZENvbXBvbmVudC5yYXpvcg==
+[C:/Users/Thomas/Documents/GitHub/HelpApplications/WebApplications/Blazor/MyFirstBlazorApp/Client/Components/LiteralsExpressionDirectives/MySecondComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMaXRlcmFsc0V4cHJlc3Npb25EaXJlY3RpdmVzXE15U2Vjb25kQ29tcG9uZW50LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Thomas/Documents/GitHub/HelpApplications/WebApplications/Blazor/MyFirstBlazorApp/Client/Components/MySecondExpressionComponent.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNeVNlY29uZEV4cHJlc3Npb25Db21wb25lbnQucmF6b3I=
+[C:/Users/Thomas/Documents/GitHub/HelpApplications/WebApplications/Blazor/MyFirstBlazorApp/Client/Components/LiteralsExpressionDirectives/MySecondExpressionComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMaXRlcmFsc0V4cHJlc3Npb25EaXJlY3RpdmVzXE15U2Vjb25kRXhwcmVzc2lvbkNvbXBvbmVudC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Thomas/Documents/GitHub/HelpApplications/WebApplications/Blazor/MyFirstBlazorApp/Client/Components/MyThirdExpressionComponentObjectAsParam.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNeVRoaXJkRXhwcmVzc2lvbkNvbXBvbmVudE9iamVjdEFzUGFyYW0ucmF6b3I=
+[C:/Users/Thomas/Documents/GitHub/HelpApplications/WebApplications/Blazor/MyFirstBlazorApp/Client/Components/LiteralsExpressionDirectives/MyThirdExpressionComponentObjectAsParam.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMaXRlcmFsc0V4cHJlc3Npb25EaXJlY3RpdmVzXE15VGhpcmRFeHByZXNzaW9uQ29tcG9uZW50T2JqZWN0QXNQYXJhbS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Thomas/Documents/GitHub/HelpApplications/WebApplications/Blazor/MyFirstBlazorApp/Client/Components/MyThirdExpressionComponentView.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNeVRoaXJkRXhwcmVzc2lvbkNvbXBvbmVudFZpZXcucmF6b3I=
+[C:/Users/Thomas/Documents/GitHub/HelpApplications/WebApplications/Blazor/MyFirstBlazorApp/Client/Components/LiteralsExpressionDirectives/MyThirdExpressionComponentView.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMaXRlcmFsc0V4cHJlc3Npb25EaXJlY3RpdmVzXE15VGhpcmRFeHByZXNzaW9uQ29tcG9uZW50Vmlldy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Thomas/Documents/GitHub/HelpApplications/WebApplications/Blazor/MyFirstBlazorApp/Client/Pages/Admin/AdminUsers.razor]
