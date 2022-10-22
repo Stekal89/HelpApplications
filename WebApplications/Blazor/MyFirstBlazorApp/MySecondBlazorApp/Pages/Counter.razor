@@ -1,4 +1,13 @@
-﻿@page "/counter"
+﻿@*
+    Component events
+
+    The EventCallback<T> class is a special Blazor class that can be exposed as a Parameter so that components can easily notify consumers when something of interest has occurred.
+
+    Once a public property of type EventCallback<T> has been declared and decorated with the [Parameter] attribute, consuming components can specify in Razor mark-up which method to call when the
+    event is triggered.
+*@
+
+@page "/counter"
 
 <PageTitle>Counter</PageTitle>
 
@@ -11,8 +20,31 @@
 @code {
     private int currentCount = 0;
 
+    // Adding an event to the Counter component
+    // In a new Blazor app, edit the /Pages/Counter.razor file and add a new callback parameter.
+    // This declares a new EventCallback named OnMultipleOfThree that any consuming component can register an interest in. The <int> specifies that the value emitted by the event callback will be a System.Int32.
+
+    [Parameter] public EventCallback OnMultipleOfThree { get; set; }
+
+    /*
+    
+    Now if we edit the IncrementCount method we can emit this event whenever the counter is incremented to a multiple of 3.
+
+    // Default implementation
     private void IncrementCount()
     {
         currentCount++;
+    }
+
+    */
+
+    // Modification
+    private async Task IncrementCount()
+    {
+        currentCount++;
+        if (currentCount % 3 == 0)
+        {
+            await OnMultipleOfThree.InvokeAsync(currentCount);
+        }
     }
 }
