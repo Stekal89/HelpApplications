@@ -1,9 +1,113 @@
-﻿@page "/"
+﻿@*
+<!--
+    #################
+    ### Example 1 ###
+    ### Step 2    ###
+    #################
 
-<PageTitle>Index</PageTitle>
+    ### Subscribing to EventCallback ###
+    
+    Edit the /Pages/Index.razor page so that we embed the Counter component and subscribe to its OnMultipleOfThree event. Change its mark-up to the following.
+-->
 
-<h1>Hello, world!</h1>
+@page "/"
 
-Welcome to your new app.
+<!-- Displays the value of LastMultipleOfThree -->
+Last multiple of three = @LastMultipleOfThree
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+<!-- Embeds the Counter component and sets its OnMultipleOfThree event to execute the UpdateLastMultipleOfThreeValue method when the event is emitted. -->
+<Counter OnMultipleOfThree=@UpdateLastMultipleOfThreeValue />
+
+@code
+{
+    // Declares a class member of type int that stores the last multiple of 3 value.
+    int LastMultipleOfThree = 0;
+
+    // The value received from the event is used to update the value of LastMultipleOfThree.
+    private void UpdateLastMultipleOfThreeValue(int value)
+    {
+        LastMultipleOfThree = value;
+    }
+}
+*@
+
+@*
+    ############
+    ### Info ###
+    ############
+
+    ### Differences between EventCallback and .NET events ###
+
+    Single-cast vs. Multi-cast
+
+    The most notable difference is that EventCallback<T> is a single-cast event handler, whereas .NET events are multi-cast. Blazor EventCallback<T> is meant to be assigned a single value and can only 
+    call back a single method.
+
+    // Setting a Blazor EventCallback
+    <MyComponent SomeEvent=@MyMethodToCall/>
+
+    // Setting a .NET event
+    MyComponent.SomeEvent += MyMethodToCall;
+
+    // Unscrubscribing from the event
+    MyComponent.SomeEvent -= MyMethodToCall;
+
+    Class vs. Struct
+    .NET events (delegates) are classes, whereas Blazor EventCallback<T> is a readonly struct. Unlike .NET delegates, EventCallback<T> cannot be null and therefore there is no need to do any null checking
+    when emitting the event.
+
+    // Invoking a .NET event
+    MyNetEvent?.Invoke(this, someValue);
+
+    // Invoking a CallbackEvent<T>
+    MyEventCallback.InvokeAsync(someValue);
+    Awaitable callbacks
+    Standard .NET events are synchronous, whereas Blazor EventCallback<T> is asynchronous. As we can see in the previous example code, EventCallback<T>.InvokeAsync returns a Task that can be awaited.
+
+    Razor mark-up compatibility
+    It is not possible to decorate a standard .NET event with [Parameter] and have it settable via Razor mark-up, whereas with EventCallback<T> it is. This gives us the ability to express event callbacks in the view mark-up itself, which makes the developer's intentions easier to see.
+*@
+
+@*
+    #################
+    ### Example 2 ###
+    ### Step 2    ###
+    #################
+
+    Automatic state change detection
+
+    Now alter the Index component so that it sets a method to callback whenever the value is a multiple of two, and so it also stores and displays the last number received from OnMultipleOfTwoAction on 
+    the consumed component.
+*@
+
+<!-- Now alter the Index component so that it sets a method to callback whenever the value is a multiple of two, and so it also stores and displays the last number received from OnMultipleOfTwoAction on the consumed component. -->
+
+@page "/"
+
+<ul>
+    <!-- Displays the value of LastMultipleOfTwo in the user interface -->
+    <li>Last multiple of two = @LastMultipleOfTwo</li>
+    <li>Last multiple of three = @LastMultipleOfThree</li>
+</ul>
+
+<!-- Sets OnMultipleOfTwo on the consumed component so that our component is notified whenever the current value is a multiple of two -->
+<Counter OnMultipleOfThree=@UpdateLastMultipleOfThreeValue OnMultipleOfTwoAction=@UpdateLastMultipleOfTwoValue />
+
+@code
+{
+    // Defines a new member to store the most recent "multiple of two" value passed from the consumed component
+    int LastMultipleOfTwo = 0;
+    int LastMultipleOfThree = 0;
+
+    private Task UpdateLastMultipleOfThreeValue(int value)
+    {
+        LastMultipleOfThree = value;
+        return Task.CompletedTask;
+    }
+
+    private void UpdateLastMultipleOfTwoValue(int value)
+    {
+        // Records the last multiple of two that the consumed component has notified us of
+        LastMultipleOfTwo = value;
+    }
+}

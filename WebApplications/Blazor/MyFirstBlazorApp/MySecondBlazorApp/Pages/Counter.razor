@@ -1,11 +1,16 @@
 ﻿@*
+<!--
+    ############
+    ### Info ###
+    ############
+
     Component events
 
     The EventCallback<T> class is a special Blazor class that can be exposed as a Parameter so that components can easily notify consumers when something of interest has occurred.
 
     Once a public property of type EventCallback<T> has been declared and decorated with the [Parameter] attribute, consuming components can specify in Razor mark-up which method to call when the
     event is triggered.
-*@
+-->
 
 @page "/counter"
 
@@ -20,7 +25,13 @@
 @code {
     private int currentCount = 0;
 
-    // Adding an event to the Counter component
+    // #################
+    // ### Example 1 ###
+    // ### Step 1    ###
+    // #################
+
+    // ### Adding an event to the Counter component ###
+
     // In a new Blazor app, edit the /Pages/Counter.razor file and add a new callback parameter.
     // This declares a new EventCallback named OnMultipleOfThree that any consuming component can register an interest in. The <int> specifies that the value emitted by the event callback will be a System.Int32.
 
@@ -42,6 +53,96 @@
     private async Task IncrementCount()
     {
         currentCount++;
+        if (currentCount % 3 == 0)
+        {
+            await OnMultipleOfThree.InvokeAsync(currentCount);
+        }
+    }
+}
+
+*@
+
+@*
+    ############
+    ### Info ###
+    ############
+
+    Differences between EventCallback and .NET events
+
+    Single-cast vs. Multi-cast
+
+    The most notable difference is that EventCallback<T> is a single-cast event handler, whereas .NET events are multi-cast. Blazor EventCallback<T> is meant to be assigned a single value and can only
+    call back a single method.
+
+    // Setting a Blazor EventCallback
+    <MyComponent SomeEvent=@MyMethodToCall/>
+
+    // Setting a .NET event
+    MyComponent.SomeEvent += MyMethodToCall;
+
+    // Unscrubscribing from the event
+    MyComponent.SomeEvent -= MyMethodToCall;
+
+    Class vs. Struct
+    .NET events (delegates) are classes, whereas Blazor EventCallback<T> is a readonly struct. Unlike .NET delegates, EventCallback<T> cannot be null and therefore there is no need to do any null checking
+    when emitting the event.
+
+    // Invoking a .NET event
+    MyNetEvent?.Invoke(this, someValue);
+
+    // Invoking a CallbackEvent<T>
+    MyEventCallback.InvokeAsync(someValue);
+    Awaitable callbacks
+    Standard .NET events are synchronous, whereas Blazor EventCallback<T> is asynchronous. As we can see in the previous example code, EventCallback<T>.InvokeAsync returns a Task that can be awaited.
+
+    Razor mark-up compatibility
+    It is not possible to decorate a standard .NET event with [Parameter] and have it settable via Razor mark-up, whereas with EventCallback<T> it is. This gives us the ability to express event callbacks in the view mark-up itself, which makes the developer's intentions easier to see.
+*@
+
+@*
+    #################
+    ### Example 2 ###
+    ### Step 1    ###
+    #################
+
+    Automatic state change detection
+
+    Whenever a method is called from an EventCallback<T>, after the method has executed Blazor will execute StateHasChanged() on the consuming component so it can be re-rendered in case the method called 
+    altered state. This is not something that will happen if the consumer's method was called back via a standard .NET event, Action<T>, or any other approach not initiated by EventCallback<T>.
+
+    For example, if we add a new [Parameter] to the Counter component of type Action<int> and call it whenever the current count is a multiple of two, we can see how the consuming component's render 
+    behavior is affected.
+
+    Change the Counter component to match the following code:
+*@
+
+@page "/counter"
+
+<h1>Counter</h1>
+
+<p>Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick=IncrementCount>Click me</button>
+
+@code {
+    private int currentCount = 0;
+
+    [Parameter]
+    public Action<int> OnMultipleOfTwoAction { get; set; }
+
+    // A [Parameter] is added of type Action<int>
+    [Parameter]
+    public EventCallback<int> OnMultipleOfThree { get; set; }
+
+    private async Task IncrementCount()
+    {
+        currentCount++;
+
+        // If the current count is a multiple of two, then invoke OnMultipleOfTwoAction
+        if (currentCount % 2 == 0)
+        {
+            OnMultipleOfTwoAction?.Invoke(currentCount);
+        }
         if (currentCount % 3 == 0)
         {
             await OnMultipleOfThree.InvokeAsync(currentCount);
