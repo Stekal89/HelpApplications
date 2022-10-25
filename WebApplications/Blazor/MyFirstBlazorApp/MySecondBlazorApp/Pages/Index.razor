@@ -111,3 +111,48 @@ Last multiple of three = @LastMultipleOfThree
         LastMultipleOfTwo = value;
     }
 }
+
+<!--
+    When we run the application now and click the button a number of times, we'll see that when UpdateLastMultipleOfTwoValue is called back via Action<int> there is no update to the view, but when UpdateLastMultipleOfThreeValue is called back via EventCallback<int>
+    on the next click the view us updated and the latest value of both are displayed.
+-->
+
+<!--
+    ############
+    ### Info ###
+    ############
+
+    ### Callee method signatures ###
+    
+    EventCallback<T> typically calls back a method with the signature private Task SomeName(T value) - where the exposure level of the method is unimportant. However, Blazor will allow us to set an EventCallback<T> to call back methods with a couple of variations.
+
+    If our method does not perform any asynchronous operations, then the following implementation may start to become tedious:
+
+    public Task SomethingHappenedInChildComponent(string value)
+    {
+      // Do something with value
+      return Task.CompletedTask;
+    }
+
+    Because of this, Blazor will allow us to set `EventCallback<T>` to call back a method with a void return type.
+
+    public void SomethingHappenedInChildComponent(string value)
+    {
+      // Do something with value
+    }
+
+    Sometimes we only want to know when an event occurs, and aren't interested in the value that was passed with it. Blazor will also call back a method that excludes the value parameter.
+
+    // Either
+    public void SomethingHappenedInChildComponent()
+    {
+      // Do something that doesn't need the value
+    }
+
+    // Or
+    public Task SomethingHappenedInChildComponent()
+    {
+      // Do some asynchronous work that doesn't need the value
+      return SomeTask;
+    }
+-->
