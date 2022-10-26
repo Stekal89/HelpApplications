@@ -1,17 +1,35 @@
 ﻿@page "/counter"
+@using TwoWayBinding.Components
 
-<PageTitle>Counter</PageTitle>
+@*
+    This is followed by some standard HTML, a H1 with a page title and a paragraph with some content.
+    Just as with a standard ASP.NET Razor page, it is possible to insert programmable content by escaping it with the @ symbol. 
+    In this case we are displaying the value of the currentCount private member.
+*@
 
 <h1>Counter</h1>
+<p>The counter value is @currentCount</p>
 
-<p role="status">Current count: @currentCount</p>
+@*
+    This will add a HTML button and use some Bootstrap styles to make it look pretty. It also sets its onclick event to execute a method named IncrementCounter. 
+    The method implementation is very simple, and should be placed within the @code section.
+*@
+<button class="btn btn-primary" @onclick=IncrementCounter>Increment counter</button>
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+@*
+    Components: Receiving values via Parameters
 
+*@
+<MySecondComponent CurrentCounterValue=@currentCount/>
+
+@*
+    Finally, the @code section of the page is declared. This is where we write our properties / methods, event handlers, or whatever else we need.
+    Here is where our currentCount private member is declared and its initial value set.
+*@
 @code {
-    private int currentCount = 0;
+    private int currentCount = 42;
 
-    private void IncrementCount()
+    private void IncrementCounter()
     {
         currentCount++;
     }

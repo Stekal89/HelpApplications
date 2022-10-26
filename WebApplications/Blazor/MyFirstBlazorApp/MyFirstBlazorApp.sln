@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyFirstBlazorApp.Client", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyFirstBlazorApp.Shared", "Shared\MyFirstBlazorApp.Shared.csproj", "{99269C39-4B8D-490E-90D4-E53744BF4150}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySecondBlazorApp", "MySecondBlazorApp\MySecondBlazorApp.csproj", "{F19CFBBE-48BA-49FD-B7E3-D816E83AEDCF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MySecondBlazorApp", "MySecondBlazorApp\MySecondBlazorApp.csproj", "{F19CFBBE-48BA-49FD-B7E3-D816E83AEDCF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwoWayBinding", "TwoWayBinding\TwoWayBinding.csproj", "{5ADA7BC7-4393-42D2-B351-88D8CD8BC4BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{F19CFBBE-48BA-49FD-B7E3-D816E83AEDCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F19CFBBE-48BA-49FD-B7E3-D816E83AEDCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F19CFBBE-48BA-49FD-B7E3-D816E83AEDCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5ADA7BC7-4393-42D2-B351-88D8CD8BC4BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5ADA7BC7-4393-42D2-B351-88D8CD8BC4BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5ADA7BC7-4393-42D2-B351-88D8CD8BC4BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5ADA7BC7-4393-42D2-B351-88D8CD8BC4BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
