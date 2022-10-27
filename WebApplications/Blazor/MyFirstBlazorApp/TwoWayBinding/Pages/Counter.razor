@@ -1,4 +1,12 @@
-﻿@page "/counter"
+﻿<!-- 
+    #######################
+    ### Two-way binding ###
+    #######################
+
+    Start as we did with the Counter page, by adding a button with an onclick event that updates the value of CurrentCounterValue.
+-->
+
+@page "/counter"
 @using TwoWayBinding.Components
 
 <h1>Counter</h1>
@@ -6,7 +14,40 @@
 
 <button class="btn btn-primary" @onclick=IncrementCounter>Increment counter</button>
 
-<MySecondComponent CurrentCounterValue=@currentCount/>
+@*<MySecondComponent CurrentCounterValue=@currentCount/>*@
+
+<!-- 
+    The problem with this is that by default [Parameter] bindings are one-way only. So the value of Page.counter will be pushed into MyFirstComponent.CurrentCounterValue by the fact that 
+    the parent view explicitly sets it: 
+ -->
+@*<MyFirstComponent CurrentCounterValue=@currentCount />*@
+
+<!--
+    But when the property within MyFirstComponent is altered, the component sets its local copy of the state and not the state of its parent view. Not only that, but the next time the parent's state
+    is updated, it will push that value into MyFirstComponent.CurrentCounterValue and replace the value we have modified.
+-->
+
+<!--
+    ######################################################
+    ### Notifying parent components when state changes ###
+    ######################################################
+
+    To fix this, we need to tell Blazor that the consuming page wants to use two-way binding. Instead of simply setting the CurrentCounterValue we now tell Blazor to bind (i.e. two-way bind) to the value 
+    instead. To use two-way binding on a parameter simply prefix the HTML attribute with the text @bind-. This tells Blazor it should not only push changes to the component, but should also observe 
+    the component for any changes and update its own state accordingly.
+-->
+<MyFirstComponent @bind-CurrentCounterValue=currentCount />
+
+<!--
+    Note: The "AT" symbol is needed when assigning code values (rather than constants) to parameters. Previously our mark-up contained CurrentCounterValue=@currentCount, but once we prepend the parameter name 
+    with @bind- the "AT" symbol before currentCount becomes unnecessary.
+
+    Running the app now will show the following error in the browser's console window.
+        WASM: System.InvalidOperationException: Object of type 'TwoWayBinding.Client.Components.MyFirstComponent' does not have a property matching the name 'CurrentCounterValueChanged'.
+
+    Two-way binding in Blazor uses a naming convention. If we want to bind to a property named SomeProperty, then we need an event call-back named SomeProperyChanged. This call-back must be invoked any time
+    the component updates SomeProperty.
+-->
 
 @code {
     private int currentCount = 42;
@@ -16,3 +57,5 @@
         currentCount++;
     }
 }
+
+

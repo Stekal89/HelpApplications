@@ -1,16 +1,42 @@
-﻿@*
-    Componets -> One-way binding:
-
-
-    At this point we have a component displaying inside a page, but the content is static. What we really want is to be able to output content dynamically.
-
-    If we alter the contents of /Components/MyFirstComponent.razor we can introduce a private member and output the value of that member using the @ symbol.
-*@
-
-<div>
+﻿<div>
     CurrentCounterValue in MyFirstComponent is @CurrentCounterValue
 </div>
 
+<!--
+    #######################
+    ### Two-way binding ###
+    #######################
+
+    ######################################################
+    ### Notifying parent components when state changes ###
+    ######################################################
+
+    Two-way binding in Blazor uses a naming convention. If we want to bind to a property named SomeProperty, then we need an event call-back named SomeProperyChanged. This call-back must be invoked 
+    any time the component updates SomeProperty.
+
+    To implement this in MyFirstComponent
+
+    1) Add the CurrentCounterValueChanged event call-back.
+    2) Change the UpdateCurrentCounterValue method from void to async Task.
+    3) After incrementing CurrentCounterValue invoke CurrentCounterValueChanged to notify the consumer that the state has altered.
+-->
+
+<button @onclick=UpdateCurrentCounterValue>Update</button>
+<button @onclick=@UpdateCurrentCounterValue>Update</button>
+
 @code {
-    private int CurrentCounterValue = 42;
+    [Parameter]
+    public int CurrentCounterValue { get; set; }
+
+    [Parameter]
+    public EventCallback<int> CurrentCounterValueChanged { get; set; }
+
+    // 1) Add the CurrentCounterValueChanged event call-back.
+    // 2) Change the UpdateCurrentCounterValue method from void to async Task.
+    async Task UpdateCurrentCounterValue()
+    {
+        // 3) After incrementing CurrentCounterValue invoke CurrentCounterValueChanged to notify the consumer that the state has altered.
+        CurrentCounterValue++;
+        await CurrentCounterValueChanged.InvokeAsync(CurrentCounterValue);
+    }
 }
