@@ -7,3 +7,5 @@ _ReSharper.*
 bin
 obj
 packages
+WebApplications/Blazor/MyFirstBlazorApp/TwoWayBinding/obj/Debug/net6.0/project.razor.vs.json
+WebApplications/Blazor/MyFirstBlazorApp/TwoWayBinding/obj/Debug/net6.0/TwoWayBinding.GeneratedMSBuildEditorConfig.editorconfig

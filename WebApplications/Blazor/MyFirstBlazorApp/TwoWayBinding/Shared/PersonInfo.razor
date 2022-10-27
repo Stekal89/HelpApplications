@@ -1,0 +1,111 @@
+﻿<!--
+    ##########################
+    ### Two-way binding 2  ###
+    ### Binding directives ###
+    ### Getting started    ###
+    ##########################
+
+    Getting started
+    Note: Although we will use the HTML <input> element here for simplicity, for a richer user experience (adding validation etc.) I recommend using the Blazor <Input*> components (InputDate, etc.) 
+    within an <EditForm> component. These are covered in the section on Forms.
+
+    First we need a page with the following members defined in the "AT"code section, so we have something to bind to:
+-->
+
+@page "/personInfo"
+
+<!--
+    Standard two-way binding
+    First we'll start off with a standard two-way binding to the Name member of our Blazor page.
+-->
+<div class="row">
+    <label>Name = @Name</label>
+    <input @bind-value=Name />
+</div>
+
+<hr />
+
+<!--
+    #############################################################
+    ### Immediate change detection using directive attributes ###
+    #############################################################
+
+    The @bind directive has a directive attribute named event. 
+    Setting the value for this directive form takes the following format:
+
+    <input @bind-value:event="x"/>
+
+    Valid values for "x" are either onchange or oninput.
+
+    onchange is the assumed default when no value for :event is specified. It is the behaviour we saw when we ran our sample - the binding only occurs when the 
+    control loses focus or when the user presses the enter key.
+
+    oninput is the only other possible value for :event, and instructs Blazor to hook into the JavaScript oninput event of the HTML element and update the bound member 
+    every time the event is fired. This results in the bound member being updated immediately every time the user changes the value in the input.
+
+    Note: The -value is the name of the HTML attribute or Blazor component property to bind to. For HTML elements the leading letter will be lowercase, for component 
+    properties the leading letter will be uppercase, the name of the directive and the name of the binding target are separated by the - symbol.
+
+    Add the following mark-up to our page and run the application.
+-->
+
+<div class="row">
+    <label>Name = @Name</label>
+    <input @bind-value=Name @bind-value:event="oninput" />
+</div>
+<hr />
+
+<!--
+    @bind-value:event="oninput" is the key to instructing Blazor to use immediate change detection. First we tell Blazor we want to bind the value HTML attribute of input to
+    our Name member (@bind-value=Name), and then we tell Blazor to hook into the oninput event of the HTML element so our binding occurs immediately every time the value of the 
+    element changes (@bind-value:event="oninput").
+-->
+
+<!--
+    ##########################################
+    ### Specifying a custom binding format ###
+    ##########################################
+
+    Specifying a custom format to use in the user interface is achieved by specifying a value for the @bind directive's format attribute.
+
+    Add the following mark-up to our page and run the application.
+-->
+
+<div class="row">
+    <label>Date of birth = @DateOfBirth?.ToString("MMMM d, yyyy")</label>
+    <input @bind-value=DateOfBirth @bind-value:format="yyyy-MM-dd" />
+</div>
+<hr />
+
+<!--
+    ###################################
+    ### Specifying a custom culture ###
+    ###################################
+
+    People of the world have different customs and cultures, this is one of the things that makes the world such an interesting place. Unfortunately, this is also one of the things that makes writing software more difficult.
+
+    Add the following mark-up to our page:
+-->
+
+<div class="row">
+    <label>Bank balance = @BankBalance</label>
+    <input @bind-value=BankBalance @bind-value:culture=Turkish/>
+</div>
+
+@code
+{
+    private string Name;
+    private DateTime? DateOfBirth;
+    private decimal? BankBalance;
+
+    /*
+    ###################################
+    ### Specifying a custom culture ###
+    ###################################
+
+    And ensure the following member is added to the page in the @code section:
+
+    */
+
+    private System.Globalization.CultureInfo Turkish = System.Globalization.CultureInfo.GetCultureInfo("tr-TR");
+}
