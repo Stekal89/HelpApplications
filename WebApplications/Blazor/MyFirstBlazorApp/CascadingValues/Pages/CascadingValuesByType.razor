@@ -1,0 +1,129 @@
+﻿
+<!-- 
+    ################################
+    ### Cascading values by type ###
+    ################################
+
+    Previously we saw how to cascade a value by name. Setting a Name is important because it is used to push a value specified in a CascadingValue into the correct properties in consuming components by matching up their names. Another option is to specify a CascadingValue without specifying a Name, when Blazor encounters a cascading value specified in this way it will inject its value into a component's property if the property meets the following criteria.
+
+    1) The property is decorated with a CascadingPropertyAttribute.
+    2) The [CascadingProperty] does not have a Name specified.
+    3) The property is of the same Type as set in the CascadingValue (e.g. boolean).
+    4) The property has a setter.
+    5) The property is public.
+-->
+
+
+@page "/CascadingValuesByType"
+
+<h3>CascadingValuesByType</h3>
+
+<!--
+    For example, the following CascadingValue will match both CascadingParameter properties in SomeComponent.
+-->
+
+<CascadingValue Value=@true>
+  <CascadingValues.Components.SomeComponent/>
+</CascadingValue>
+<div class="row">
+    Property1 = @Property1
+</div>
+<div class="row">
+    Property2 = @Property2
+</div>
+
+<!--
+    An unnamed CascadingValue isn't as specific as a CascadingValue that has a Name specified, because every CascadingParameter decorated property with the correct type and no Name will 
+    consume the value. In cases where we define a simple .NET type such as a bool or an int it is recommended we use a named parameter, however, sometimes the type of the value is sufficient 
+    to identify its purpose; specifying a name would be redundant, and excluding it is therefore a small time saver.
+
+    As the recruitment application grows we might end up with multiple cascading parameters, such as:
+
+    bool ViewAnonymizedData
+    Indicates if personally-identifying information should be hidden.
+    string DateFormat
+    Consuming components can use this to format dates in a uniform manner.
+    string LanguageCode
+    Components could use this to display translated text.
+    The clear pattern emerging here is that these are all related to a user's preferences. Rather than having Razor mark-up with multiple CascadingValue elements, like this:
+
+    <CascadingValue Name="ViewAnonymizedData" Value=@ViewAnonymizedData>
+      <CascadingValue Name="DateFormat" Value=@DateFormat>
+        <CascadingValue Name="LanguageCode" Value=@LanguageCode>
+          (Body goes here)
+        </CascadingValue>
+      </CascadingValue>
+    </CascadingValue>
+
+    It would make more sense (and take less code) to have a custom class and then create your Razor mark-up like this:
+
+    public class UserPreferences
+    {
+      public bool ViewAnonymizedData { get; set; }
+      public string DateFormat { get; set; }
+      public string LanguageCode { get; set; }
+    }
+    and then create your Razor mark-up like this:
+
+    <CascadingValue Value=@UserPreferences>
+    </CascadingValue>
+-->
+
+<hr />
+<div>
+    <h3>Object CascadingValue</h3>
+    <div class="row">
+        <CascadingValue Value=@UserPreference>
+        </CascadingValue>
+    </div>
+</div>
+<hr />
+
+<!--Consuming components then only need a single property marked as a [CascadingParameter] rather than three.-->
+@if (!UserPreference.ViewAnonymizedData)
+{
+    <h3>Show Candidate</h3>
+  <div>
+    <span>Name</span> @Candidate.Name
+  </div>
+  <div>
+        <span>Date of birth</span> @Candidate.DateofBirth.ToString(UserPreference.DateFormat)
+  </div>
+    <CascadingValues.Components.ViewAddress Address=@Candidate.Address />
+}
+else
+{
+  <span>[Anonmymized view]</span>
+}
+
+@code
+{
+    [CascadingParameter]
+    private bool Property1 { get; set; }
+
+    [CascadingParameter]
+    private bool Property2 { get; set; }
+
+    [CascadingParameter]
+    private Models.UserPreferences UserPreference { get; set; } = new Models.UserPreferences()
+    {
+        ViewAnonymizedData = false,
+        LanguageCode = "de-de",
+        DateFormat = "dd.MM.yyyy"
+    };
+
+    [CascadingParameter]
+    private Models.Candidate Candidate { get; set; } = new Models.Candidate()
+    {
+            Name = "Tom",
+            DateofBirth = new DateTime(1988, 11, 23),
+            Address = new Models.Address() 
+            {
+                Name = "1428 Elm Street",
+                ZIP = "61349",
+                Country = "Ohio"
+            }
+    };
+
+
+}

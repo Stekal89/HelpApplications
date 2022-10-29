@@ -1,0 +1,26 @@
+﻿@if (null != Address)
+{
+    <div>
+        <h5>ViewAddress</h5>
+        <div class="row">
+            <span>Address: @Address.Name</span>
+        </div>
+        <div class="row">
+            <span>ZIP-Code: @Address.ZIP</span>
+        </div>
+        <div class="row">
+            <span>Country: @Address.Country</span>
+        </div>
+    </div>
+}
+else
+{
+    <div>
+        <span>Address is NULL!</span>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public Models.Address? Address { get; set; } 
+}

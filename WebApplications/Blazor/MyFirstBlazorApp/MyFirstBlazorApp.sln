@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MySecondBlazorApp", "MySeco
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwoWayBinding", "TwoWayBinding\TwoWayBinding.csproj", "{5ADA7BC7-4393-42D2-B351-88D8CD8BC4BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CascadingValues", "CascadingValues\CascadingValues.csproj", "{E5799FDB-B34B-4B04-B760-CAD6B0C74662}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CascadingValues", "CascadingValues\CascadingValues.csproj", "{E5799FDB-B34B-4B04-B760-CAD6B0C74662}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
