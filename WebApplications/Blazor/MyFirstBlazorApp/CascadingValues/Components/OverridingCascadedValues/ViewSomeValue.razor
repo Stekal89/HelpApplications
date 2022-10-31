@@ -1,0 +1,22 @@
+﻿
+<!--
+    ##################################
+    ### Overriding cascaded values ###
+    ##################################
+
+    Cascading values and cascading parameters allow their values to cascade down the render tree without being passed explicitly from parent to child. Another feature of Blazor is 
+    that it allows us to override the value of a CascadingValue further down the render tree.
+
+    Given the following ViewSomeValue component that displays the value of a CascadingValue named ValueToOverride:
+-->
+
+<div>Values are @SomeValue1 / @SomeValue2</div>
+
+@code
+{
+    [CascadingParameter(Name = "CascadedValue")]
+    private string? SomeValue1 { get; set; }
+
+    [CascadingParameter(Name = "ValueToOverride")]
+    private string? SomeValue2 { get; set; }
+}
