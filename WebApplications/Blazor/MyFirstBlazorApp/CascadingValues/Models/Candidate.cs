@@ -8,8 +8,8 @@
     /// </summary>
     public class Candidate
     {
-        public string Name { get; set; }
+        public string? Name { get; set; }
         public DateTime DateofBirth { get; set; }
-        public Models.Address Address { get; set; }
+        public Models.Address? Address { get; set; }
     }
 }
