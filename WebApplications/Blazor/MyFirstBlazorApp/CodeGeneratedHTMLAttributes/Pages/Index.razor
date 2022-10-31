@@ -2,8 +2,50 @@
 
 <PageTitle>Index</PageTitle>
 
-<h1>Hello, world!</h1>
+<!-- 
+    ######################################
+    ### Code generated HTML attributes ###
+    ######################################
 
-Welcome to your new app.
+    Razor will only execute C# code in the following places:
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+    Inside an element's content area, for example <span>@GetSomeHtml()</span>.
+    When determining a value to assign into an element's attribute, for example <img src=@GetTheImageForTheUrl() />.
+    Within the @@code section.
+    The technique we need to employ to generate one or more attributes + values for a HTML element is called "Attribute splatting". Attribute splatting involves assigning a
+    Dictionary<string, object> to an attribute with the special name @@attribute.
+
+    The preceding code will output a <div> with 5 attributes:
+    <div attribute_1="1" attribute_2="2" attribute_3="3" attribute_4="4" attribute_5="5"></div>
+-->
+
+<div @attributes=MyCodeGeneratedAttributes />
+
+@code
+{
+    Dictionary<string, object>? MyCodeGeneratedAttributes;
+
+    protected override void OnInitialized()
+    {
+        MyCodeGeneratedAttributes = new Dictionary<string, object>();
+        for (int index = 1; index <= 5; index++)
+        {
+            MyCodeGeneratedAttributes["attribute_" + index] = index;
+        }
+    }
+}
+
+<!--
+    ---------------------
+    --- Special cases ---
+    ---------------------
+
+    Some HTML attributes, such as readonly and disabled require no values - their mere presence on the element is sufficient for them to be effective. In fact, even apply a value 
+    such as false will still activate them. The following <input> element will be both readonly and disabled.
+
+    <input readonly="false" disbabled="false"/>
+    In razor views the rule is slightly different. If we output readonly=@IsReadOnly or disabled=@IsDisabled - whenever the value being assigned is false razor will not output 
+    the attribute at all; when the value being assigned is true razor will output the element without assigning a value.
+
+    <input readonly=@true disabled=@false/> will result in razor generated HTML that does not include the disabled attribute at all.
+-->
