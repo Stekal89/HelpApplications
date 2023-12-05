@@ -17,6 +17,7 @@ namespace EntityTestDotNetCore
             ConsoleColor currentColor = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.DarkRed;
             Console.WriteLine($"\n{msg}");
+            Console.ForegroundColor = currentColor;
         }
 
         static void Main(string[] args)
@@ -24,8 +25,8 @@ namespace EntityTestDotNetCore
             //ServiceProvider serviceProvider = DependencyInjection.DependencyInjection.RegisterServices(args);
             using (ServiceProvider serviceProvider = DependencyInjection.RegisterServices(args))
             {
-                IAuthorService<Author> authorService = serviceProvider.GetService<IAuthorService<Author>>();
-                ICustomerService<Customer> customerServcie = serviceProvider.GetService<ICustomerService<Customer>>();
+                var authorService = serviceProvider.GetService<IAuthorService>();
+                var customerServcie = serviceProvider.GetService<ICustomerService>();
 
                 #region Authentification and Database-Connection
 
@@ -33,7 +34,7 @@ namespace EntityTestDotNetCore
 
                 try
                 {
-                    using (var response = Task.Run<ServiceResponse<bool>>(async () => await authorService.CanDbConnectAsync()))
+                    using (Task<ServiceResponse<bool>> response = Task.Run(async () => await authorService.CanDbConnectAsync()))
                     {
                         response.Wait();
 
@@ -74,7 +75,7 @@ namespace EntityTestDotNetCore
                         Func<IQueryable<Customer>, IQueryable<Customer>>? customerInclude = null;
                         Expression<Func<Customer, bool>>? customerFilter = null;
 
-                        using (var response = Task.Run<ServiceResponse<List<Customer>>>(async () => await customerServcie.GetListAsync(customerInclude, customerFilter)))
+                        using (Task<ServiceResponse<List<Customer>>> response = Task.Run(async () => await customerServcie.GetListAsync(customerInclude, customerFilter)))
                         {
                             response.Wait();
 
@@ -114,11 +115,10 @@ namespace EntityTestDotNetCore
 
                                 success = false;
                             }
+
+                            //ILogger logger = serviceProvider.GetService<ILogger<Program>>();
+                            //logger.LogInformation("Github api url is: {githubApiUrl}", configuration["github:apiUrl"]);
                         }
-
-                        //ILogger logger = serviceProvider.GetService<ILogger<Program>>();
-                        //logger.LogInformation("Github api url is: {githubApiUrl}", configuration["github:apiUrl"]);
-
                     }
                     catch (Exception ex)
                     {
@@ -136,9 +136,9 @@ namespace EntityTestDotNetCore
                     try
                     {
                         Expression<Func<Author, bool>>? authorFilter = null;
-
-                        using (var response = Task.Run<ServiceResponse<List<Author>>>(async () => await authorService.GetListAsync(a => a.Include(ta => ta.Titleauthors), authorFilter)))
+                        using (Task<ServiceResponse<List<Author>>> response = Task.Run(async () => await authorService.GetListAsync(aut => aut.Include(a => a.Titleauthors).ThenInclude(ta => ta.Title), authorFilter)))
                         {
+
                             response.Wait();
 
                             var result = response.Result;
@@ -165,6 +165,7 @@ namespace EntityTestDotNetCore
                                             Console.WriteLine($"--------------");
                                             Console.WriteLine($"   --- TitleAuthors ---");
                                             Console.WriteLine($"   Count: {item.Titleauthors.Count}");
+                                            
                                             Console.WriteLine($"--------------");
                                         }
                                         Console.WriteLine($"\n---------------------");

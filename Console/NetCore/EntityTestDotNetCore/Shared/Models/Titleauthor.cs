@@ -2,6 +2,7 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace EntityTestDotNetCore.Shared.Models;
 
@@ -15,6 +16,7 @@ public partial class Titleauthor
 
     public int? Royaltyper { get; set; }
 
+    [JsonIgnore]
     public virtual Author Au { get; set; }
 
     public virtual Title Title { get; set; }

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EntityTestDotNetCore.Services
 {
-    public class AuthorService<Author> : BaseService<Author>, IAuthorService<Author> where Author : class
+    public class AuthorService : BaseService<Author>, IAuthorService
     {
         /// <inheritdoc />
         public AuthorService(PubsContext context) : base(context)

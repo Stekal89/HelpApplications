@@ -31,7 +31,7 @@ namespace EntityTestDotNetCore.Services
         /// <inheritdoc />
         public async Task<ServiceResponse<bool>> CanDbConnectAsync()
         {
-            ServiceResponse<bool> response = new ServiceResponse<bool>();
+            ServiceResponse<bool> response = new();
 
             try
             {
@@ -58,7 +58,7 @@ namespace EntityTestDotNetCore.Services
         /// <inheritdoc />
         public async Task<ServiceResponse<List<TEntity>>>? GetListAsync(Func<IQueryable<TEntity>, IQueryable<TEntity>>? includeExpression = null, Expression<Func<TEntity, bool>>? whereExpression = null)
         {
-            ServiceResponse<List<TEntity>> response = new ServiceResponse<List<TEntity>>();
+            var response = new ServiceResponse<List<TEntity>>();
 
             var query = _context.Set<TEntity>().AsQueryable();
 
@@ -82,7 +82,7 @@ namespace EntityTestDotNetCore.Services
                     Data = await query.ToListAsync()
                 };
 
-                response.Success = response.Data?.Count > 0 ? true : false;
+                response.Success = response.Data?.Count > 0;
             }
             catch (Exception ex)
             {

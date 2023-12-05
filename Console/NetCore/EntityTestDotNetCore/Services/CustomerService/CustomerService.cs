@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EntityTestDotNetCore.Services.CustomerService
 {
-    public class CustomerService<Customer> : BaseService<Customer>, ICustomerService<Customer> where Customer : class
+    public class CustomerService : BaseService<Customer>, ICustomerService
     {
         /// <inheritdoc />
         public CustomerService(PubsContext context) : base(context)

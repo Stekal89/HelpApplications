@@ -3,7 +3,7 @@ using EntityTestDotNetCore.Shared;
 
 namespace EntityTestDotNetCore.Services
 {
-    public interface IAuthorService<Author> : IBaseService<Author> where Author : class
+    public interface IAuthorService : IBaseService<Author>
     {
 
     }

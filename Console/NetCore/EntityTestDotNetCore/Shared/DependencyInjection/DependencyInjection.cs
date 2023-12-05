@@ -36,8 +36,8 @@ namespace EntityTestDotNetCore.Shared
 
             //serviceCollection.AddScoped<IBaseService<TEntity>, BaseService<TEntity>>();
 
-            serviceCollection.AddScoped<IAuthorService<Author>, AuthorService<Author>>();
-            serviceCollection.AddScoped<ICustomerService<Customer>, CustomerService<Customer>>();
+            serviceCollection.AddScoped<IAuthorService, AuthorService>();
+            serviceCollection.AddScoped<ICustomerService, CustomerService>();
 
             IConfiguration configuration = SetupConfiguration(args);
 
