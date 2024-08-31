@@ -12,6 +12,53 @@ namespace SQLLIteExample.Modules
         public static string? DBPath { get; set; }
 
         /// <summary>
+        /// Create DB-File if not exists
+        /// </summary>
+        /// <param name="error">out -> Error/Exception</param>
+        /// <param name="dbPath">DB-File</param>
+        /// <returns>File exists/Error</returns>
+        public static bool CreateDataBaseIfNotExists(out string? error, string? dbPath)
+        {
+            error = null;
+
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(dbPath))
+                {
+                    if (!System.IO.File.Exists(dbPath))
+                    {
+                        Console.WriteLine($"DB-File '{dbPath}' not exists, creating...");
+
+                        // Verify if folder exists
+                        string folderDirectory = System.IO.Path.GetDirectoryName(dbPath);
+                        if (!System.IO.Directory.Exists(folderDirectory))
+                        {
+                            System.IO.Directory.CreateDirectory(folderDirectory);
+                        }
+
+                        // Create DB
+                        using (var file = System.IO.File.Create(dbPath))
+                        {
+
+                        }
+                    }
+                }
+                else
+                {
+                    error = "DB-Path is NULL!\r\n";
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                error = $"Error during creation of DB-File!\r\n{ex.Message}\r\n";
+                return false;
+            }
+           
+            return true;
+        }
+
+        /// <summary>
         /// Create db-connection to the sqlite db
         /// </summary>
         /// <param name="dbPath">Path of the DB-File</param>

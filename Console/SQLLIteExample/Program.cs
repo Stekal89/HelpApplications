@@ -47,7 +47,7 @@ namespace SQLLIteExample
 
         #region Properties & Members
 
-        private static readonly string dbPath = @"D:\DEV\tmp\Database\SQLLiteExample.sqlite";
+        private static readonly string dbPath = @"..\Database\SQLLiteExample.sqlite";
 
         #endregion
 
@@ -58,51 +58,57 @@ namespace SQLLIteExample
 
             SQLiteHelper.DBPath = dbPath;
 
-            SqliteConnection? dbConnection = SQLiteHelper.CreateConnection(out er, dbPath);
-            error += er;
-
-            if (null != dbConnection)
+            if (SQLiteHelper.CreateDataBaseIfNotExists(out error, dbPath) && string.IsNullOrEmpty(error))
             {
-                if (!DBProvisioning.CreateTables(out er, dbConnection))
-                {
-                    error += er;
+                SqliteConnection? dbConnection = SQLiteHelper.CreateConnection(out er, dbPath);
+                error += er;
 
-                    if (string.IsNullOrEmpty(error))
+                if (null != dbConnection)
+                {
+                    if (!DBProvisioning.CreateTables(out er, dbConnection))
                     {
-                        WriteError("Error during Provisioning of Database!\n");
+                        error += er;
+
+                        if (string.IsNullOrEmpty(error))
+                        {
+                            WriteError("Error during Provisioning of Database!\n");
+                        }
+                        else
+                        {
+                            WriteError(error);
+                        }
+                        return;
+                    }
+
+                    // Create new Person
+                    Person person = new Person()
+                    {
+                        FirstName = "Jonny",
+                        LastName = "Johnson",
+                        Age = 30
+                    };
+
+                    if (person.InsertPerson(out er, dbConnection))
+                    {
+                        // Select person
+                        ReadData(dbConnection);
                     }
                     else
                     {
-                        WriteError(error);
+                        WriteError("Person was not created!\n");
                     }
-                    return;
-                }
-
-                // Erstelle eine neue Person
-
-                Person person = new Person()
-                {
-                    FirstName = "Jonny",
-                    LastName = "Johnson",
-                    Age = 30
-                };
-
-                if (person.InsertPerson(out er, dbConnection))
-                {
-                    // Select person
-                    ReadData(dbConnection);
                 }
                 else
                 {
-                    WriteError("Person was not created!\n");
+                    WriteError($"No database connection created!\n" +
+                               $"{error}\n");
                 }
             }
-            else
+            else 
             {
-                WriteError($"No database connection created!\n" +
-                           $"{error}\n");
+                WriteError(error);
             }
-
+            
             Console.WriteLine("\n\nContinue with any key...");
             Console.ReadKey();
         }
