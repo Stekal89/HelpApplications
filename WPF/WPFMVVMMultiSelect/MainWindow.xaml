@@ -1,0 +1,60 @@
+﻿<Window x:Class="WPFMVVMMultiSelect.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ribbon="clr-namespace:System.Windows.Controls.Ribbon;assembly=System.Windows.Controls.Ribbon"
+        xmlns:uc="clr-namespace:Custom.UserControls"
+        xmlns:vm="clr-namespace:WPFMVVMMultiSelect.ViewModels"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/WPFMVVMMultiSelect;component/Styles/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Window.DataContext>
+        <vm:PersonViewModel/>
+    </Window.DataContext>
+    
+    <Grid Margin="8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Ribbon Grid.Row="0">
+            <!-- Explicitly disable the Application Menu -->
+            <Ribbon.ApplicationMenu>
+                <RibbonApplicationMenu Visibility="Collapsed"/>
+            </Ribbon.ApplicationMenu>
+            <RibbonTab Header="Home" Background="Transparent">
+                <RibbonGroup Header="Actions">
+                    <RibbonButton Label="Execute">
+                        <RibbonButton.LargeImageSource>
+                            <BitmapImage UriSource="/WPFMVVMMultiSelect;component/Images/action32x32.png"/>
+                        </RibbonButton.LargeImageSource>
+                    </RibbonButton>
+                </RibbonGroup>
+                <RibbonGroup Header="Search">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <uc:MultiSelectionCombobox Grid.Row="0" Grid.Column="0" Width="200" Margin="5,0,0,0" DataContext="{Binding MultiSelectionVM}" />
+                        <RibbonButton Label="Find" Grid.Row="0" Grid.Column="1" VerticalContentAlignment="Center" />
+                    </Grid>
+                </RibbonGroup>
+            </RibbonTab>
+        </Ribbon>
+
+        <GroupBox Grid.Row="1" Header="Results" Margin="0,5,0,0">
+            <DataGrid ItemsSource="{Binding Data, Mode=TwoWay, AsyncState=OnPropertyChanged}" AutoGenerateColumns="True"/>
+        </GroupBox>
+    </Grid>
+</Window>
