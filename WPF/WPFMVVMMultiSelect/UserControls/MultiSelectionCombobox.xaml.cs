@@ -1,5 +1,6 @@
 ﻿using Custom.UserControls.Models;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -19,18 +20,18 @@ namespace Custom.UserControls
             DataContext = _viewModel;
         }
 
-        private void CheckBox_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-
-        }
-
         private void MultiSelectItem_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             if (sender is FrameworkElement element && element.DataContext is MultiSelectItem item)
             {
                 if (DataContext is MultiSelectionViewModel vm)
                 {
-                    vm.SelectItemClick(item); // manually call
+                    // manually call Click logic from the ViewModel
+                    vm.SelectItemClick(item); 
+
+                    // Check if all items except the first one are selected
+                    vm.MultiSelectItems[0].IsSelected = vm.MultiSelectItems.Skip(1).All(i => i.IsSelected);
+
                     e.Handled = true;
                 }
             }
@@ -39,18 +40,26 @@ namespace Custom.UserControls
 
     public class MultiSelectionViewModel : INotifyPropertyChanged
     {
-        private ObservableCollection<MultiSelectItem> _multiSelectItems = new ObservableCollection<MultiSelectItem>();
+        private MultiSelectItemObservableCollection _multiSelectItems = new MultiSelectItemObservableCollection() { new MultiSelectItem("Select all", false) };
 
         /// <summary>
         /// Gets or sets the collection of multi-select items.
         /// </summary>
-        public ObservableCollection<MultiSelectItem> MultiSelectItems
+        public MultiSelectItemObservableCollection MultiSelectItems
         {
             get => _multiSelectItems;
             set
             {
                 if (_multiSelectItems != value)
                 {
+                    _multiSelectItems = value;
+
+                    // Add "Select all" option as the first item
+                    if (_multiSelectItems[0].Name != "Select all")
+                    {
+                        _multiSelectItems.Insert(0, new MultiSelectItem("Select all"));
+                    }
+
                     DisplayName = $"{_multiSelectItems.Count} Items selected";
                     OnPropertyChanged();
                 }
@@ -95,7 +104,8 @@ namespace Custom.UserControls
 
         public MultiSelectionViewModel()
         {
-
+            // Add "Select all" option as the first item
+            _multiSelectItems.Add(new MultiSelectItem("Select all"));
         }
 
         /// <summary>
@@ -107,8 +117,19 @@ namespace Custom.UserControls
             if (parameter is not MultiSelectItem item)
                 return;
 
-            // Toggle the status manually (since the click was suppressed)
-            item.IsSelected = !item.IsSelected;
+            if (item.Name == "Select all")
+            {
+                bool selectAll = !item.IsSelected;
+                foreach (var multiSelectItem in _multiSelectItems)
+                {
+                    multiSelectItem.IsSelected = selectAll;
+                }
+            }
+            else
+            {
+                // Toggle the status manually (since the click was suppressed)
+                item.IsSelected = !item.IsSelected;
+            }
 
             // Keep the dropdown open
             IsDropDownOpen = true;
@@ -223,6 +244,32 @@ namespace Custom.UserControls.Models
         protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
+
+    public class MultiSelectItemObservableCollection : ObservableCollection<MultiSelectItem>
+    {
+        protected override void ClearItems()
+        {
+            base.ClearItems();
+
+            // Custom logic after clearing items
+            // Add "Select all" option as the first item
+            if (this.Count == 0 || this[0].Name != "Select all")
+            {
+                this.Insert(0, new MultiSelectItem("Select all"));
+            }
+        }
+
+        protected override void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
+        {
+            base.OnCollectionChanged(e);
+
+            if (this.Count > 0)
+            {
+                // Check if all items except the first one are selected
+                this[0].IsSelected = this.Skip(1).All(i => i.IsSelected);
+            }
         }
     }
 }
