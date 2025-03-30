@@ -4,49 +4,37 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Custom.UserControls"
-             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              d:DesignHeight="50" d:DesignWidth="800">
-
-    <!-- If this binding is setted, it will not work to use
-         the viewModel in different ViewModels/Places -->
-    <!--<UserControl.DataContext>
-        <local:MultiSelectionViewModel/>
-    </UserControl.DataContext>-->
-
-    <Grid x:Name="grdMain" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2,2,10,2">
-        <ComboBox x:Name="cbxMain" Grid.Row="0" Grid.Column="0"
-                  Height="{Binding ElementName=grdMain, Path=ActualHeight, Mode=OneWay}"
-                  Width="{Binding ElementName=grdMain, Path=ActualWidth, Mode=OneWay}"
+    <Grid x:Name="MainGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2,2,10,2">
+        <ComboBox x:Name="MainComboBox" Grid.Row="0" Grid.Column="0"
+                  Height="{Binding ElementName=MainGrid, Path=ActualHeight, Mode=OneWay}"
+                  Width="{Binding ElementName=MainGrid, Path=ActualWidth, Mode=OneWay}"
                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                   IsEditable="True" IsReadOnly="True" IsTextSearchEnabled="False"
                   StaysOpenOnEdit="True"
                   Margin="0" Padding="0"
                   ItemsSource="{Binding MultiSelectItems, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                   Text="{Binding DisplayName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                  IsDropDownOpen="{Binding IsDropDownOpen, Mode=TwoWay}">
-            <i:Interaction.Behaviors>
-                <local:MouseLeftButtonDownBehavior Command="{Binding PreviewMouseLeftButtonDownCommand}"/>
-            </i:Interaction.Behaviors>
+                  IsDropDownOpen="{Binding IsDropDownOpen, Mode=TwoWay}" > 
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <ToggleButton Height="{Binding ElementName=grdMain, Path=ActualHeight, Mode=OneWay}"
-                                Width="{Binding ElementName=grdMain, Path=ActualWidth, Mode=OneWay}"
-                                Margin="-5,-2,-6,-2" Padding="5,0,0,0"
-                                Background="Transparent"
-                                BorderBrush="Transparent">
-                        <CheckBox Name="chkObject"
-                                Command="{Binding DataContext.ToggleCheckCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
-                                Height="{Binding ElementName=grdMain, Path=ActualHeight, Mode=OneWay}"
-                                Width="{Binding ElementName=grdMain, Path=ActualWidth, Mode=OneWay}"
-                                HorizontalContentAlignment="Left" 
-                                HorizontalAlignment="Stretch"
-                                VerticalAlignment="Stretch" 
-                                VerticalContentAlignment="Center"
-                                IsChecked="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                CommandParameter="{Binding Id}"
-                                Margin="0,-1,0,-1" Padding="0,-2,0,-2">
-                            <TextBlock Margin="5,0,0,0" Text="{Binding Name}" />
+                    <ToggleButton Height="{Binding ElementName=MainGrid, Path=ActualHeight, Mode=OneWay}"
+                                  Width="{Binding ElementName=MainGrid, Path=ActualWidth, Mode=OneWay}"
+                                  Margin="-5,-2,-6,-2" Padding="5,0,0,0"
+                                  Background="Transparent"
+                                  BorderBrush="Transparent"
+                                  HorizontalContentAlignment="Left"
+                                  IsChecked="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                  PreviewMouseDown="MultiSelectItem_PreviewMouseDown" >
+                        <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                  HorizontalContentAlignment="Left" 
+                                  HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Stretch" 
+                                  VerticalContentAlignment="Center" 
+                                  >
+                            <TextBlock Margin="5,0,0,0" Text="{Binding Name}"  />
                         </CheckBox>
                     </ToggleButton>
                 </DataTemplate>

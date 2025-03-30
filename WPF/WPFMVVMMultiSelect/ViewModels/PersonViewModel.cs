@@ -44,16 +44,29 @@ namespace WPFMVVMMultiSelect.ViewModels
             _data = testData.Table;
 
             // Initialize MultiSelectItems with test data
-            MultiSelectionVM.MultiSelectItems = new List<MultiSelectItem>();
+            //MultiSelectionVM.MultiSelectItems = new System.Collections.ObjectModel.ObservableCollection<MultiSelectItem>();
+
+            MultiSelectionVM.MultiSelectItems.Clear();
+
+            //var items = new List<MultiSelectItem>();
             for (int i = 0; i < _data.Rows.Count; i++)
             {
+                //items.Add(new MultiSelectItem
                 MultiSelectionVM.MultiSelectItems.Add(new MultiSelectItem
                 {
-                    Id = (int)_data.Rows[i]["Id"],
                     Name = $"{_data.Rows[i]["FirstName"]} {_data.Rows[i]["LastName"]}",
                     IsSelected = true
                 });
             }
+            // Add the Items to the MultiSelectionVM
+            // To be sure, that the "Select all" Entry is the first one
+            // We have to set it at this way
+
+            //MultiSelectionVM.MultiSelectItems.Add(new MultiSelectItem { Name = "Select all", IsSelected = true });
+            //MultiSelectionVM.SetItemsSource(items);
+
+            //MultiSelectionVM.MultiSelectItems = items;
+ 
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
